@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuController;
+use App\Http\Controllers\TimestampController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,6 @@ use App\Http\Controllers\AuController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-// Route::get('/login', 'Login@getIndex');
-
- 
-Route::get('/login', [AuController::class, 'getIndex']);
+    return view('template');
+});// Route::get('/login', 'Login@getIndex');
+Route::get('/timestamp', [TimestampController::class, 'index']);

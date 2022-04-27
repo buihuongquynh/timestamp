@@ -1,0 +1,21 @@
+.social-part .fa{
+    padding-right:20px;
+}
+ul li a{
+    margin-right: 20px;
+}
+body {
+    background: black;
+}
+.clock {
+    color: #a84b4b;
+    font-size: 60px;
+    font-family: Orbitron;
+    letter-spacing: 7px;
+}
+.center{
+  display: flex;
+  align-items: center;
+justify-content: center;
+margin: 100px 0;
+}
