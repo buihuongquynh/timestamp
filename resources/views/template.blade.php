@@ -3,9 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Laravel</title>
         <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <meta name="_token" content="{{csrf_token()}}" />
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -209,36 +209,13 @@
   </footer>
 </div>
 <script>
-function showTime(){
-    var date = new Date();
-    var h = date.getHours(); // 0 - 23
-    var m = date.getMinutes(); // 0 - 59
-    var s = date.getSeconds(); // 0 - 59
-    var session = "AM";
-    
-    if(h == 0){
-        h = 12;
-    }
-    
-    if(h > 12){
-        h = h - 12;
-        session = "PM";
-    }
-    
-    h = (h < 10) ? "0" + h : h;
-    m = (m < 10) ? "0" + m : m;
-    s = (s < 10) ? "0" + s : s;
-    
-    var time = h + ":" + m + ":" + s + " " + session;
-    document.getElementById("MyClockDisplay").innerText = time;
-    document.getElementById("MyClockDisplay").textContent = time;
-    
-    setTimeout(showTime, 1000);
-    
-}
 
-showTime();
 </script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+</script>
+<script type="text/javascript" src="{{ asset('js/timestamp.js')}}"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
 </html>

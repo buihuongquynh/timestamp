@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Models\Timestamp;
@@ -70,9 +70,18 @@ class TimestampController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $timestamp = Timestamp::find($id);
+        if ($timestamp === null) {
+            return response()->json([
+                'message' => 'Not found',
+            ], 404);
+        }
+        DB::table('timestamps') ->where('id', $id) ->update(['checkout' => DB::raw('CURRENT_TIMESTAMP')]);
+        return response()->json([
+            $timestamp
+        ]);
     }
 
     /**

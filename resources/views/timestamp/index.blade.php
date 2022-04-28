@@ -13,9 +13,8 @@
 
     <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
     </h1>
-    <button type="button" class="btn btn-success">check in</button>
-    <button type="button" class="btn btn-warning">checkout</button>
-
+    <button type="button" id="checkin" class="btn btn-success">check in</button>
+    <button type="button" id="checkout" class="btn btn-warning">checkout</button>
   </div>
   </div>
  
