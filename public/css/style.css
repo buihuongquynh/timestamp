@@ -19,3 +19,8 @@ body {
 justify-content: center;
 margin: 100px 0;
 }
+form{
+    max-width: 900px;
+    margin: auto;
+    margin-top: 50px;
+}

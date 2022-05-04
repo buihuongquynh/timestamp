@@ -22,4 +22,3 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('timestamp', [TimestampController::class, 'create']);
 Route::get('timestamp', [TimestampController::class, 'getListTimestamp']);
 Route::post('timestamp/update/{id}', [TimestampController::class, 'update']);
-

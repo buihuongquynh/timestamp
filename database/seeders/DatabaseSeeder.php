@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Database\Seeder;
 
@@ -13,6 +14,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Timestamp::factory(10)->create();
+        DB::table('admins')->insert([
+            [
+                'name' => 'Admin',
+                'email' => 'a@gmail.com',
+                'password' => bcrypt('admin123'),
+            ]
+        ]);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'User',
+                'email' => 'user@gmail.com',
+                'password' => bcrypt('admin123'),
+            ],
+            [
+                'name' => 'quyh',
+                'email' => 'q@gmail.com',
+                'password' => bcrypt('admin123'),
+            ]
+        ]);
     }
 }

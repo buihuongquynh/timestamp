@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuController;
 use App\Http\Controllers\TimestampController;
+use App\Http\Controllers\Guard;
 
 
 /*
@@ -16,7 +17,10 @@ use App\Http\Controllers\TimestampController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('template');
 });// Route::get('/login', 'Login@getIndex');
-Route::get('/timestamp', [TimestampController::class, 'index']);
+Route::get('/timestamp', [TimestampController::class, 'index'])->middleware('validate_token');
+Route::get('/login', [Guard::class, 'index']);
+Route::post('/login', [Guard::class, 'Login']);
+Route::get('/00abloginuser/logout',[Guard::class, 'getLogout']);

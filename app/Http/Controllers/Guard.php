@@ -5,11 +5,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Models\Timestamp;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Base;
-use Carbon\Carbon;
-use DateTime;
 
-class TimestampController extends Base
+class Guard extends Base
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,11 @@ class TimestampController extends Base
      */
     public function index()
     {
-        return view('timestamp.index', ['title' => 'タイムスタンプ']);
+        $auth = Auth::guard('web');
+        if ($auth->check()) {
+            return redirect('timestamp');
+        }
+        return view('login', ['title' => 'login']);
     }
 
     /**
@@ -26,19 +29,29 @@ class TimestampController extends Base
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function Login(Request $request)
     {
-        $ldate = Carbon::now();
-        $timestamp = Timestamp::select("*")->where('user_id', $request['user_id'])->whereDate('checkin',$ldate)->get();
-        if(count($timestamp) < 1){
-            Timestamp::create($request->all());
-            return response(['message' => 'success'], 200);
-        }
-        else return response(['message' => 'invalid id'], 404);
-        
+        $auth = Auth::guard('web');
+        $credentials = [
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+          ];
+          if ($auth->attempt($credentials)) {
+            if ($request->query('ref')) {
+              return "123";
+            } else {
+              return redirect('timestamp');
+            }
+          } else {
+            return redirect('login');
+          }
+       
     }
-    public function getListTimestamp(){
-        return response()->json(Timestamp::all());
+    public function getLogout()
+    {
+      auth()->guard('web')->logout();
+      \Session::flush();
+      return redirect('login');
     }
     /**
      * Store a newly created resource in storage.
@@ -82,15 +95,13 @@ class TimestampController extends Base
      */
     public function update($id)
     {
-        $ldate = Carbon::now();
-        $timestamp = Timestamp::select("*")->where('user_id', $id)->whereDate('checkin',$ldate)->first();
-        if ($timestamp === null ) {
-            // if ($timestamp === null || $timestamp['checkout']  ) {
+        $timestamp = Timestamp::find($id);
+        if ($timestamp === null) {
             return response()->json([
                 'message' => 'Not found',
             ], 404);
         }
-        Timestamp::select("*")->where('user_id', $id)->whereDate('checkin',$ldate)->first()->update(['checkout' => DB::raw('CURRENT_TIMESTAMP')]);
+        DB::table('timestamps') ->where('id', $id) ->update(['checkout' => DB::raw('CURRENT_TIMESTAMP')]);
         return response()->json([
             $timestamp
         ]);
