@@ -1,0 +1,28 @@
+.always-line{
+	margin-top: 0px;
+    margin: 15px 0px;
+    border: 1px solid #eee;
+}
+.boundary{
+	margin: 30px -300px;
+}
+.pagination{
+	margin-bottom: 30px;
+}
+
+@media screen and (max-width: 767px){
+	.always-line{
+		margin: 15px 10px;
+	}
+}
+@media screen and (max-width: 1600px){
+	.boundary{
+		margin: 30px calc(0px - (100vw - 1020px) / 2);
+	}
+}
+@media screen and (max-width: 1000px){
+	.boundary{
+		width: 100%;
+		margin: 30px 0px;
+	}
+}

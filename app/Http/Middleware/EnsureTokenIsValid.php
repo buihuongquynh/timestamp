@@ -17,7 +17,8 @@ class EnsureTokenIsValid
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check()) {
+        $authUer = Auth::guard('web');
+        if (!$authUer->check()) {
             return redirect('login');
         }
         return $next($request);

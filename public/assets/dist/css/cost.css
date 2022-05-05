@@ -1,0 +1,41 @@
+.cost-body{
+	max-width: 1000px;
+    margin: auto;
+    margin-top: -276px;
+	margin-bottom: 145px;
+    background-color: #F5F5F5;
+}
+.cost-body-inner{
+	padding: 0px 10px;
+}
+.cost-con{
+	line-height: 1.5;
+}
+.cost-content{
+	padding: 10px 10px !important;
+	height: 35px !important;
+    border: 1px solid #d5d5d5;
+	border-radius: 4px;
+    background-color: #fff;
+}
+.chat-btn a{
+	min-width: 344px;
+	height: 52px;
+}
+.chat-btn{
+	margin: 25px 0px;
+}
+.chat-btn a::before{
+	content: none;
+}
+@media screen and (max-width: 767px){
+	.cost-body{
+		margin-top: 0px;
+	}
+	.chat-btn{
+		padding: 0px 15px !important;
+	}
+	.chat-btn a{
+		min-width: inherit;
+	}
+}

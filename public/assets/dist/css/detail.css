@@ -1,0 +1,73 @@
+.venue-intro-img{
+	width: 100%;
+    height: 559px;
+    background: url(../img/venue.png) top center;
+    background-size: cover;
+    position: relative;
+    z-index: -1;
+}
+.venue-comment{
+	display: flex;
+    height: 40px;
+    background-color: #AC9B6C;
+    align-items: center;
+    padding-left: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+.comment-1{
+	font-size: 24px;
+    color: #FF7182;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+.com-btn-container{
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+.com-btn-container, .com-btn-container > div{
+	display: flex;
+}
+.com-btn-container > div div{
+    text-align: center;
+    background-color: #AC9B6C;
+    height: 24px;
+    line-height: 24px;
+    color: white;
+    border-radius: 12px;
+    padding: 0px 20px;
+    margin-right: 10px;
+}
+p.com{
+	line-height: 1.3;
+}
+@media screen and (max-width: 767px){
+	.venue-comment{
+		font-size: 14px;
+		padding-left: 10px;
+	}
+	.com-btn-container{
+		padding-left: 10px;
+	}
+	.item-info div:nth-child(1){
+		width: auto;
+	}
+	.item-info div:nth-child(2){
+		width: auto;
+	}
+}
+@media screen and (max-width: 576px){
+	.com-btn-container{
+		flex-direction: column;
+		padding-left: 10px;
+		margin-bottom: 10px;
+    	margin-top: 20px;
+	}
+	.com-btn-container > div{
+		margin-bottom: 10px;
+	}
+	.item-info div{
+		width: 100%;
+	}
+}

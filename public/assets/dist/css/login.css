@@ -1,0 +1,77 @@
+/*PC用 ログイン画面*/
+.footer {
+  padding: 30px 16px 40px;
+}
+.login-body{
+  min-height: 418px;
+  display: flex;
+}
+.login-body-inner{
+  /* min-width: 375px; */
+  margin: auto;
+}
+.login-body-title{
+  text-align: center;
+  line-height: 2.5;
+  font-size: 24px;
+  color: #707070;
+}
+.login-account{
+  margin-bottom: 10px;
+}
+.login-accout input{
+  border-radius: 0px;
+  border-color: #707070;
+  height: 50px;
+}
+.login-body .planer-btn{
+  margin:15px 0 0;
+}
+.login-other{
+  width: 100%;
+  display: flex;
+  line-height: 0;
+}
+.login-other-inner{
+  margin:10px auto;
+}
+.login-other-inner > a:nth-child(1) > img{
+  margin-right: 10px;
+}
+.registor-member{
+  line-height: 2.5;
+  text-align: center;
+  font-size: 24px;
+}
+.registor-member a{
+  color: #707070;
+}
+.planer-btn a {
+  width: 100%;
+}
+form a {
+  text-decoration: underline;
+}
+/* スマホ用 マイページ_ログイン前 */
+@media screen and (max-width: 767px){
+  .footer {
+    padding: 0px;
+  }
+  .login-body{
+    height: calc(100vh - 170px);
+  }
+  .login-body-inner{
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .login-body .planer-btn{
+    padding: 0px;
+  }
+  .login .footer{
+    padding-bottom: 0px;
+  }
+  .header-inner {
+    border-bottom: 1px solid #707070;
+  }
+}

@@ -1,0 +1,319 @@
+/*reset*/
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    "游ゴシック Medium", YuGothic, YuGothicM, "Hiragino Kaku Gothic ProN",
+    メイリオ, Meiryo, sans-serif;
+  font-size: 16px;
+  font-size: 1.6rem;
+  line-height: 2;
+  font-weight: 400;
+  color: #333333;
+}
+
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: 600;
+}
+
+ul,
+dl {
+  list-style: none;
+}
+
+img,
+embed,
+iframe,
+object,
+audio,
+video {
+  height: auto;
+  border: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:active,
+a:hover {
+  text-decoration: none !important;
+  outline: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+a:link {
+  color: #333;
+}
+a:visited {
+  color: #333;
+}
+a:hover {
+  color: #333;
+}
+a:active {
+  color: #333;
+}
+
+input,
+textarea {
+  font-size: 16px;
+}
+
+input[type="submit"],
+input[type="button"] {
+  border: none;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+select {
+  height: 38px;
+  padding: 10px 10px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 100px;
+  padding: 10px 10px;
+  background-color: #fff;
+  border: 1px solid #d1d1d1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  display: inline-block;
+  height: 55px;
+  padding: 8px 60px;
+  color: #ff7182;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid #ff7182;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+  color: #ff7182;
+  border-color: #ff7182;
+  outline: 0;
+}
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary {
+  color: #fff;
+  background-color: #ff7182;
+  border-color: #ff7182;
+}
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus {
+  color: #fff;
+  background-color: #ff7182;
+  border-color: #ff7182;
+}
+
+@media (max-width: 768px) {
+  body {
+    line-height: 2.4rem;
+  }
+}
+
+@media (max-width: 990px) {
+  img {
+    max-width: 100%;
+  }
+}
+
+/*container 調整-----------------------------------------------------------------------------*/
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container {
+    max-width: 767px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 990px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 999px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}
+
+/*表示-----------------------------------------------------------------------------*/
+
+/*スマホ表示のみ*/
+@media (min-width: 768px) {
+  .sp-only {
+    display: none !important;
+  }
+}
+
+/*pc表示のみ*/
+@media (max-width: 767px) {
+  .pc-only {
+    display: none !important;
+  }
+}
+
+/*静的0602-----------------------------------------------------------------------------*/
+.about {
+  width: 100%;
+  padding-right: 30px;
+  padding-left: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  line-height: 3rem;
+}
+.title-about {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  font-weight: bold;
+}
+
+/* iframe */
+.video-wrap {
+  position: relative;
+  padding-bottom: 56.25%; /*アスペクト比 16:9の場合の縦幅*/
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}

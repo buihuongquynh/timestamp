@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="57" height="57" viewBox="0 0 57 57">
+  <g id="favorite-icon" transform="translate(-412.623 -1595.394)">
+    <circle id="楕円形_2" data-name="楕円形 2" cx="28.5" cy="28.5" r="28.5" transform="translate(412.623 1595.394)" fill="#fff"/>
+    <g id="i_a" transform="translate(423.115 1606.877)">
+      <g id="Rectangle" transform="translate(0 0)">
+        <rect id="rect" width="36.721" height="36.721" fill="none"/>
+      </g>
+      <g id="icon_data" transform="translate(2.511 6.417)">
+        <path id="パス_30" data-name="パス 30" d="M33.405,11.018a7.591,7.591,0,0,0-10.755,0L19.659,14l-2.991-2.983A7.607,7.607,0,0,0,5.914,21.773L19.659,35.519,30.414,24.764h0l2.991-2.991A7.607,7.607,0,0,0,33.405,11.018Z" transform="translate(-3.81 -8.785)" fill="none" stroke="#ff7182" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+</svg>
