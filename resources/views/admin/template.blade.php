@@ -129,7 +129,7 @@
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false" id="nav">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="/admin/enterprise/offer/list" class="nav-link">
                 <i class="nav-icon fas fa-calendar-check"></i>
                 <p>
@@ -160,8 +160,8 @@
                   衣装管理
                 </p>
               </a>
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a href="/admin/enterprise/part/list" class="nav-link">
                 <i class="nav-icon fab fa-buromobelexperte"></i>
                 <p>
@@ -176,7 +176,7 @@
                   パッケージ管理
                 </p>
               </a>
-            </li>
+            </li>-->
             <li class="nav-item">
               <a href="/admin/requirement/type/list" class="nav-link">
                 <i class="nav-icon fas fa-clipboard-list"></i>
@@ -184,7 +184,7 @@
                   大項目管理
                 </p>
               </a>
-            </li>
+            </li> 
             <li class="nav-item">
               <a href="/admin/standard/user/list" class="nav-link">
                 <i class="nav-icon fas fa-users"></i>
@@ -209,7 +209,7 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a href="/admin/news/type/list" class="nav-link">
                 <i class="nav-icon fas  fa-newspaper"></i>
                 <p>
@@ -217,6 +217,7 @@
                 </p>
               </a>
             </li>
+            -->
             <li class="nav-item">
               <a href="/admin/requirement/setups/detail" class="nav-link">
                 <i class="nav-icon fas  fa-cogs"></i>
@@ -224,7 +225,7 @@
                   設定管理
                 </p>
               </a>
-            </li>
+            </li> 
           </ul>
         </nav>
         <!-- /.sidebar-menu -->

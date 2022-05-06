@@ -16,11 +16,14 @@ class Base extends ControllerHybrid
   {
     $this->middleware(function ($request, $next) {
       $auth = Auth::guard('web');
-      if ($auth->check()) {
+      if ($auth->check()) { 
         $this->user = $auth->user()->toArray();
       }
+      $this->setup =json_decode(json_encode(\App\Models\Setup::get()), true);
+      // dd( $this->setup);
       View::share(array(
         'user' => $this->user,
+        'setup' => $this->setup,
       ), null, false);
         // dd($this->user);
       return $next($request);

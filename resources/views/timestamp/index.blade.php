@@ -1,8 +1,9 @@
 @extends('template')
 @section('content')
+
 <div class="card text-center">
   <div class="card-header">
-    Timestamp
+  <?php echo $setup['tag_head'] ?: '-'; ?>
   </div>
   <div class="center">
 
@@ -11,7 +12,7 @@
     <h5 class="card-title"><?php echo $user['name'] ?: '-'; ?></h5>
     <h1 class="card-text">
 
-    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+    <div id="MyClockDisplay" @if ($setup['title_color']) style="color: {{$setup['title_color']}} " @endif class="clock" onload="showTime()"></div>
     </h1>
     <button type="button" id="checkin" class="btn btn-success">check in</button>
     <button type="button" id="checkout" class="btn btn-warning">checkout</button>

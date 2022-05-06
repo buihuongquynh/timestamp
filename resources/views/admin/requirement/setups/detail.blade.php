@@ -1,30 +1,7 @@
 @extends('admin.template')
 @section('content')
 <form id="detail-form">
-  <div class="card card-default">
-    <div class="card-header">
-      <h3 class="card-title">基本設定</h3>
-      <div class="card-tools">
-        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-      </div>
-    </div>
-    <!-- /.card-header -->
-    <div class="card-body">
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="email">管理者メールアドレス</label>
-            <span class="float-right badge badge-danger">必須</span>
-            <textarea name="manage_mail" class="form-control" id="manage-mail" rows="5" maxlength="2000" required
-              data-rule-multiemail><?php echo $detail['manage_mail']; ?></textarea>
-          </div>
-        </div>
-      </div>
-      <!-- /.row -->
-    </div>
-    <!-- /.card-body -->
-  </div>
+  
 
   <div class="card card-default">
     <div class="card-header">
