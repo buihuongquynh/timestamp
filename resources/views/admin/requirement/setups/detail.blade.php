@@ -1,7 +1,7 @@
 @extends('admin.template')
 @section('content')
 <form id="detail-form">
-  
+
 
   <div class="card card-default">
     <div class="card-header">
@@ -110,7 +110,7 @@
 
 </form>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
     $('#color').on('input', function() {
       var val = $(this).val();
       $('#title-color').attr('value', val);

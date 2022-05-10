@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuController;
 use App\Http\Controllers\TimestampController;
+use App\Http\Controllers\DailyAttendance;
 use App\Http\Controllers\Admin\Standard\User;
 use App\Http\Controllers\Admin\Standard\Moderator;
 use App\Http\Controllers\Admin\Requirement\Type;
@@ -23,10 +24,9 @@ use App\Http\Controllers\Admin\GuardAdmin;
 |
 */
 
-Route::get('/login', function () {
-    return view('template');
-});// Route::get('/login', 'Login@getIndex');
 Route::get('/timestamp', [TimestampController::class, 'index'])->middleware('validate_token');
+// Route::get('/works', [DailyAttendance::class, 'index']);
+Route::get('/works', [DailyAttendance::class, 'index']);
 Route::get('/login', [Guard::class, 'index']);
 Route::post('/login', [Guard::class, 'Login']);
 Route::get('/00abloginuser/logout',[Guard::class, 'getLogout']);

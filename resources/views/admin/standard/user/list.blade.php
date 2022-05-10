@@ -2,7 +2,6 @@
 @section('content')
 <div class="row">
   <div class="col-12">
-
     <div class="card">
       <div class="card-header d-flex" id="search-form">
         <div class="input-group">
@@ -52,11 +51,10 @@
         <table id="list-table" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>氏名</th>
-              <th>メールアドレス</th>
-              <th>電話番号</th>
-              <th>登録方法</th>
-              <th>登録日</th>
+              <th>Họ tên</th>
+              <th>Email</th>
+              <th>Địa chỉ</th>
+              <th>Ngày sinh</th>
             </tr>
           </thead>
         </table>
@@ -90,6 +88,12 @@
       {
         data: 'email'
       },
+      {
+        data: 'address'
+      },
+      {
+        data: 'birthday'
+      }
     ]
   };
 </script>

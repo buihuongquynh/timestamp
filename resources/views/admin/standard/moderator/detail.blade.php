@@ -24,6 +24,23 @@
             <span class="float-right badge badge-danger">必須</span>
             <input value="<?php echo $detail['email']; ?>" type="email" name="email" class="form-control" id="email" placeholder="例：example@example.com" required>
           </div>
+         
+          
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="password">パスワード</label>
+            <input type="password" name="password" class="form-control" id="password" minlength="6">
+          </div>
+          <div class="form-group">
+            <label for="group">権限</label>
+            <span class="float-right badge badge-danger">必須</span>
+            <select class="form-control" name="group" id="group" required>
+              <option value="1"<?php if ($detail['group'] == 1): ?> selected<?php endif; ?>>企業者</option>
+              <option value="50"<?php if ($detail['group'] == 50): ?> selected<?php endif; ?>>管理者</option>
+            </select>
+          </div>
+        </div>
           <!-- /.form-group -->
         </div>
         <!-- /.col -->

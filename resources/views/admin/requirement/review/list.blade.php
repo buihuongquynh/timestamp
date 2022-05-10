@@ -41,8 +41,7 @@
         表示設定</button>
     </div>
     <div class="col-6 text-right">
-      <a id="btn-new" href="/admin/requirement/review/new" class="btn btn-primary float-right"><i
-          class="fas fa-plus-circle"></i> 新規登録</a>
+      <a id="btn-new" href="/admin/requirement/review/new" class="btn btn-primary float-right"><i class="fas fa-plus-circle"></i> 新規登録</a>
     </div>
   </div>
 </footer>
@@ -50,20 +49,20 @@
 <script>
   var tableConfig = {
     'columns': [{
-      data: 'title',
-      render: function (data, type, row, meta) {
-        return '<a href="/admin/requirement/review/detail/' + row['id'] + '">' + data + '</a>';
-      }
-    },
-    {
-      data: 'user_name',
-    },
-    {
-      data: 'review_score',
-    },
-    {
-      data: 'updated_at'
-    },
+        data: 'title',
+        render: function(data, type, row, meta) {
+          return '<a href="/admin/requirement/review/detail/' + row['id'] + '">' + data + '</a>';
+        }
+      },
+      {
+        data: 'user_name',
+      },
+      {
+        data: 'review_score',
+      },
+      {
+        data: 'updated_at'
+      },
     ]
   };
 </script>

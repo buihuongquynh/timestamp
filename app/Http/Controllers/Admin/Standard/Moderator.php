@@ -52,7 +52,7 @@ class Moderator extends Base
 
   public function getDetail($id = null)
   {
-    $detail = ['id' => '', 'name' => '', 'email' => ''];
+    $detail = ['id' => '', 'name' => '', 'email' => '', 'group' => ''];
     if (is_numeric($id)) {
       $detail = DB::table('admins')
         ->select(array_keys($detail))
