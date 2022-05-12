@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuController;
 use App\Http\Controllers\TimestampController;
 use App\Http\Controllers\DailyAttendance;
+use App\Http\Controllers\EditTimestamp;
 use App\Http\Controllers\Admin\Standard\User;
 use App\Http\Controllers\Admin\Standard\Moderator;
 use App\Http\Controllers\Admin\Requirement\Type;
@@ -27,6 +28,7 @@ use App\Http\Controllers\Admin\GuardAdmin;
 Route::get('/timestamp', [TimestampController::class, 'index'])->middleware('validate_token');
 // Route::get('/works', [DailyAttendance::class, 'index']);
 Route::get('/works', [DailyAttendance::class, 'index']);
+Route::get('/edit/{id}', [EditTimestamp::class, 'index']);
 Route::get('/login', [Guard::class, 'index']);
 Route::post('/login', [Guard::class, 'Login']);
 Route::get('/00abloginuser/logout',[Guard::class, 'getLogout']);
@@ -42,7 +44,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('standard/user/new',[User::class, 'postNew']);
     Route::get('standard/user/copy/{id}',[User::class, 'getCopy']);
     Route::post('standard/user/copy/{id}',[User::class, 'postCopy']);
-
     // Route::get('standard/home', [Moderator::class, 'postCopy']);
     Route::get('standard/moderator/list', [Moderator::class, 'getList']);
     Route::get('standard/moderator/detail/{id}', [Moderator::class, 'getDetail']);

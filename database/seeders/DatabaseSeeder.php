@@ -20,6 +20,18 @@ class DatabaseSeeder extends Seeder
         'group' => 100,
         'password' => Hash::make('password'),
       ]);
+      DB::table('admins')->insert([
+        'name' => Str::random(10),
+        'email' => Str::random(10) . '@airbridal.co.jp',
+        'group' => 100,
+        'password' => Hash::make('11111111'),
+      ]);
+      DB::table('admins')->insert([
+        'name' => Str::random(10),
+        'email' => Str::random(10) . '@airbridal.co.jp',
+        'group' => 100,
+        'password' => Hash::make('22222222'),
+      ]);
       DB::table('users')->insert([
           'name' => 'User',
           'email' => 'user@gmail.com',
@@ -27,13 +39,7 @@ class DatabaseSeeder extends Seeder
         'prefecture' => 10,
         'address' => Str::random(10),
       ]);
-      DB::table('users')->insert([
-        'name' => 'User',
-        'email' => 'r@gmail.com',
-        'password' => bcrypt('admin123'),
-      'prefecture' => 10,
-      'address' => Str::random(10),
-    ]);
+     
     DB::table('users')->insert([
       'name' => 'User',
       'email' => 'a@gmail.com',

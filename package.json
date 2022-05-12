@@ -10,7 +10,9 @@
         "production": "mix --production"
     },
     "dependencies": {
+        "ant-design-vue": "^3.2.3",
         "axios": "^0.18.0",
+        "bootstrap-icons": "^1.8.1",
         "bootstrap-vue": "^2.0.0-rc.11",
         "gh-pages": "^1.2.0",
         "jquery": "^3.6.0",

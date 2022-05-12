@@ -8,16 +8,20 @@
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <meta name="_token" content="{{csrf_token()}}" />
   <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap-datetimepicker.min.css') }}">
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
   <script src="https://codepen.io/mimikos/pen/GvpJYQ.js"></script>
   <script src="https://codepen.io/mimikos/pen/rzOOgG.js"></script>
-  <script type="text/javascript" src="{{ asset('js/DailyAttendance.js')}}"></script>
-
 <script>
     window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
 </script>
@@ -189,7 +193,13 @@
   </div>
       <!-- Scripts -->
       <script src="{{ asset('js/app.js') }}" defer></script>
-
+      <script src="{{ asset('js/jquery.min.js') }}"></script>
+      <script src="{{ asset('js/popper.js') }}"></script>
+      <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+      <script src="{{ asset('js/moment-with-locales.min.js') }}"></script>
+      <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script>
+      <script src="{{ asset('js/mains.js') }}"></script>
+      <script src="{{ asset('js/main.js') }}"></script>
   </body>
 
 </html>

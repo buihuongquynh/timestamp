@@ -18,7 +18,7 @@ use App\Http\Controllers\TimestampController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 Route::post('timestamp', [TimestampController::class, 'create']);
 Route::get('timestamp', [TimestampController::class, 'getListTimestamp']);
+Route::get('time-of-user', [TimestampController::class, 'getTimeOfUser']);
 Route::post('timestamp/update/{id}', [TimestampController::class, 'update']);

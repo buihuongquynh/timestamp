@@ -38,7 +38,28 @@ class TimestampController extends Base
         
     }
     public function getListTimestamp(){
-        return response()->json(Timestamp::all());
+        // return response()->json(Timestamp::all());
+        $data = DB::table('timestamps')
+            ->select('checkin')
+            ->get();
+            $res = [];
+            foreach ($data as $value)
+                {
+                    array_push($res,    
+                      date("Y-m",strtotime($value->checkin))   
+                );
+                }
+                return response()->json([
+                    'data' => array_unique($res),
+                ], 200);
+    }
+    public function getTimeOfUser(Request $request){
+        // return response()->json(Timestamp::all());
+        $user = DB::table('timestamps')
+        ->where('user_id', $request['user_id'])
+            ->where('checkin', 'like', '%'.$request['checkin'].'%')
+        ->get();
+        return $user;
     }
     /**
      * Store a newly created resource in storage.

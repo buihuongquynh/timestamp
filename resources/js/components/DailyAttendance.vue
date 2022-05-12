@@ -1,174 +1,133 @@
 <template>
-  <div class="text-center section">
-    <h2 class="h2">Custom Calendars</h2>
-    <p class="text-lg font-medium text-gray-600 mb-6">
-      Roll your own calendars using scoped slots
-    </p>
-    <v-calendar
-      class="custom-calendar max-w-full"
-      :masks="masks"
-      :attributes="attributes"
-      disable-page-swipe
-      is-expanded
-    >
-      <template v-slot:day-content="{ day, attributes }">
-        <div class="flex flex-col h-full z-10 overflow-hidden">
-          <span class="day-label text-sm text-gray-900">{{ day.day }}</span>
-          <div class="flex-grow overflow-y-auto overflow-x-auto">
-            <p
-              v-for="attr in attributes"
-              :key="attr.key"
-              class="text-xs leading-tight rounded-sm p-1 mt-0 mb-1"
-              :class="attr.customData.class"
-            >
-              {{ attr.customData.title }}
-            </p>
-          </div>
+  <div class="container mt-10 list_time">
+    <div class="select">
+      <b-form-select v-model="selected" :options="options"></b-form-select>
+    </div>
+    <div class="tables">
+<ul class="head">
+      <li class="row ">
+        <div class="col-1">
+          <b>Ngày</b>
         </div>
-      </template>
-    </v-calendar>
+        <div class="col-2">
+          <b>checkin</b>
+        </div>
+        <div class="col-2">
+          <b>checkout</b>
+        </div>
+      </li>
+    </ul>
+    <ul v-if="itemsTables.length">
+      <li class="row" v-for="itemsTable in itemsTables" :key="itemsTable.id">
+        <div class="col-1">
+          <a :href="'/edit/' + itemsTable.id">
+              <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-pencil"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+            />
+          </svg>
+          </a>
+         
+          <span>{{ itemsTable.time }} </span>
+        </div>
+        <div class="col-2">
+          {{ itemsTable.checkin }}
+        </div>
+        <div class="col-2">
+          {{ itemsTable.checkout }}
+        </div>
+      </li>
+    </ul>
+    </div>
+    
   </div>
 </template>
-
 <script>
+import { RepositoryFactory } from "../repository/factory";
+const ListReponsitory = RepositoryFactory.get("list");
 export default {
   data() {
-    const month = new Date().getMonth();
-    const year = new Date().getFullYear();
     return {
-      masks: {
-        weekdays: 'WWW',
-      },
-      attributes: [
-        {
-          key: 1,
-          customData: {
-            title: 'Lunch with mom.',
-            class: 'bg-red-600 text-white',
-          },
-          dates: new Date(year, month, 1),
-        },
-        {
-          key: 2,
-          customData: {
-            title: 'Take Noah to basketball practice',
-            class: 'bg-blue-500 text-white',
-          },
-          dates: new Date(year, month, 2),
-        },
-        {
-          key: 3,
-          customData: {
-            title: "Noah's basketball game.",
-            class: 'bg-blue-500 text-white',
-          },
-          dates: new Date(year, month, 5),
-        },
-        {
-          key: 4,
-          customData: {
-            title: 'Take car to the shop',
-            class: 'bg-indigo-500 text-white',
-          },
-          dates: new Date(year, month, 5),
-        },
-        {
-          key: 4,
-          customData: {
-            title: 'Meeting with new client.',
-            class: 'bg-teal-500 text-white',
-          },
-          dates: new Date(year, month, 7),
-        },
-        {
-          key: 5,
-          customData: {
-            title: "Mia's gymnastics practice.",
-            class: 'bg-pink-500 text-white',
-          },
-          dates: new Date(year, month, 11),
-        },
-        {
-          key: 6,
-          customData: {
-            title: 'Cookout with friends.',
-            class: 'bg-orange-500 text-white',
-          },
-          dates: { months: 5, ordinalWeekdays: { 2: 1 } },
-        },
-        {
-          key: 7,
-          customData: {
-            title: "Mia's gymnastics recital.",
-            class: 'bg-pink-500 text-white',
-          },
-          dates: new Date(year, month, 22),
-        },
-        {
-          key: 8,
-          customData: {
-            title: 'Visit great grandma.',
-            class: 'bg-red-600 text-white',
-          },
-          dates: new Date(year, month, 25),
-        },
-      ],
+      selected: null,
+      options: [],
+      itemsTables: [],
     };
+  },
+  created() {
+    this.Time();
+  },
+  props: {
+    user_id: String,
+  },
+  methods: {
+    async Time() {
+      try {
+        const data = await ListReponsitory.getTimeWorks();
+        data?.data?.forEach((element) => {
+          this.options.push({
+            value: element,
+            text: element,
+          });
+        });
+        this.selected = data?.data[0];
+
+        this.TimeOfUser(data?.data[0]);
+      } catch (error) {}
+    },
+    async TimeOfUser(selected) {
+      try {
+        const res = await ListReponsitory.getTimeUserWorks({
+          user_id: this.user_id,
+          checkin: selected,
+        });
+        res?.forEach((element) => {
+          this.itemsTables?.push({
+            id: element.id,
+            time: element.checkin.slice(8, 10),
+            checkin: element.checkin.slice(10, 19),
+            checkout: element.checkout.slice(10, 19),
+          });
+        });
+      } catch (error) {
+        console.log("erroroo");
+      }
+    },
   },
 };
 </script>
+<style scoped>
+.head{
+  background: black;
+  color: white;
+  margin-bottom: 0;
+}
+.list_time ul {
+border: 1px solid #bcc1c5;
+margin-left: 10px;
+}
+.list_time ul li div{
+border-right: 1px solid #bcc1c5;
+border-bottom: 1px solid #bcc1c5;
+padding: 5px;
 
-<style lang="postcss" scoped>
-::-webkit-scrollbar {
-  width: 0px;
 }
-::-webkit-scrollbar-track {
-  display: none;
+.list_time .head li div{
+  border-bottom: none;
 }
-/deep/ .custom-calendar.vc-container {
-  --day-border: 1px solid #b8c2cc;
-  --day-border-highlight: 1px solid #b8c2cc;
-  --day-width: 90px;
-  --day-height: 90px;
-  --weekday-bg: #f8fafc;
-  --weekday-border: 1px solid #eaeaea;
-  border-radius: 0;
-  width: 100%;
-  & .vc-header {
-    background-color: #f1f5f8;
-    padding: 10px 0;
-  }
-  & .vc-weeks {
-    padding: 0;
-  }
-  & .vc-weekday {
-    background-color: var(--weekday-bg);
-    border-bottom: var(--weekday-border);
-    border-top: var(--weekday-border);
-    padding: 5px 0;
-  }
-  & .vc-day {
-    padding: 0 5px 3px 5px;
-    text-align: left;
-    height: var(--day-height);
-    min-width: var(--day-width);
-    background-color: white;
-    &.weekday-1,
-    &.weekday-7 {
-      background-color: #eff8ff;
-    }
-    &:not(.on-bottom) {
-      border-bottom: var(--day-border);
-      &.weekday-1 {
-        border-bottom: var(--day-border-highlight);
-      }
-    }
-    &:not(.on-right) {
-      border-right: var(--day-border);
-    }
-  }
-  & .vc-day-dots {
-    margin-bottom: 5px;
-  }
+.list_time .tables{
+  margin-top: 30px;
+}
+.list_time{
+  margin-top: 30px;
+}
+svg{
+  cursor: pointer;
 }
 </style>
