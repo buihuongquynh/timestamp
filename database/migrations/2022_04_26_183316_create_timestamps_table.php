@@ -16,8 +16,9 @@ class CreateTimestampsTable extends Migration
         Schema::create('timestamps', function (Blueprint $table) {
             $table->id();
             $table->dateTime('checkin')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->dateTime('checkout')->nullable()->default(null);;
-            $table->string('user_id');
+            $table->dateTime('checkout')->nullable()->default(null);
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     /**

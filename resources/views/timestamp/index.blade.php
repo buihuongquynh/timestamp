@@ -1,6 +1,5 @@
 @extends('template')
 @section('content')
-
 <div class="card text-center">
   <div class="card-header">
   <?php echo $setup['tag_head'] ?: '-'; ?>
@@ -14,8 +13,8 @@
 
     <div id="MyClockDisplay" style="color: {{$setup['title_color']}} " class="clock" onload="showTime()"></div>
     </h1>
-    <button type="button" id="checkin" class="btn btn-success">check in</button>
-    <button type="button" id="checkout" class="btn btn-warning">checkout</button>
+    <button type="button" id="checkin" class="button-62">Checkin</button>
+    <button type="button" id="checkout" class="button-62">Checkout</button>
   </div>
   </div>
 
@@ -33,8 +32,6 @@
   </div>  
 </div>
 <script>
- 
-
   const BASE_URL = "http://l.timestamp"
 function showTime(){
     var date = new Date();
@@ -105,4 +102,5 @@ jQuery(document).ready(function(){
        });
 });
 </script>
+
 @endsection

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TimestampController;
+use App\Http\Controllers\EditTimestamp;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('timestamp', [TimestampController::class, 'create']);
 Route::get('timestamp', [TimestampController::class, 'getListTimestamp']);
+Route::get('timestamp/{id}', [TimestampController::class, 'show']);
 Route::get('time-of-user', [TimestampController::class, 'getTimeOfUser']);
 Route::post('timestamp/update/{id}', [TimestampController::class, 'update']);
+Route::get('list-edit-time', [EditTimestamp::class, 'getEditTimse']);
+Route::post('create-edit-time', [EditTimestamp::class, 'createEditTime']);
+

@@ -20,6 +20,7 @@
         "v-calendar": "^1.0.8",
         "vue": "^2.5.16",
         "vue-router": "^3.5.3",
+        "vue2-timepicker": "^1.1.6",
         "watch": "^1.0.2"
     },
     "devDependencies": {

@@ -20,7 +20,11 @@ class TimestampController extends Base
     {
         return view('timestamp.index', ['title' => 'タイムスタンプ']);
     }
-
+    public function getAll()
+    {
+        $data = Timestamp::all();
+        return response()->json($data);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +39,6 @@ class TimestampController extends Base
             return response(['message' => 'success'], 200);
         }
         else return response(['message' => 'invalid id'], 404);
-        
     }
     public function getListTimestamp(){
         // return response()->json(Timestamp::all());
@@ -49,6 +52,7 @@ class TimestampController extends Base
                       date("Y-m",strtotime($value->checkin))   
                 );
                 }
+                
                 return response()->json([
                     'data' => array_unique($res),
                 ], 200);
@@ -80,7 +84,8 @@ class TimestampController extends Base
      */
     public function show($id)
     {
-        //
+        $data = Timestamp::findOrFail($id);
+        return response()->json($data);
     }
 
     /**
@@ -125,6 +130,8 @@ class TimestampController extends Base
      */
     public function destroy($id)
     {
-        //
+        $data = Timestamp::findOrFail($id);
+        $data->delete();
+        return response()->json($data::all());
     }
 }
