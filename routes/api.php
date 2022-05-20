@@ -24,6 +24,5 @@ Route::get('timestamp', [TimestampController::class, 'getListTimestamp']);
 Route::get('timestamp/{id}', [TimestampController::class, 'show']);
 Route::get('time-of-user', [TimestampController::class, 'getTimeOfUser']);
 Route::post('timestamp/update/{id}', [TimestampController::class, 'update']);
-Route::get('list-edit-time', [EditTimestamp::class, 'getEditTimse']);
-Route::post('create-edit-time', [EditTimestamp::class, 'createEditTime']);
+Route::post('create-edit-time', [TimestampController::class, 'createEditTime']);
 

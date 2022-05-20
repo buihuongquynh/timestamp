@@ -28,7 +28,7 @@ use App\Http\Controllers\Admin\GuardAdmin;
 Route::get('/timestamp', [TimestampController::class, 'index'])->middleware('validate_token');
 // Route::get('/works', [DailyAttendance::class, 'index']);
 Route::get('/works', [DailyAttendance::class, 'index']);
-Route::get('/edit/{id}', [EditTimestamp::class, 'index']);
+Route::get('/edit/{id}', [TimestampController::class, 'pageEditTime']);
 Route::get('/login', [Guard::class, 'index']);
 Route::post('/login', [Guard::class, 'Login']);
 Route::get('/00abloginuser/logout',[Guard::class, 'getLogout']);

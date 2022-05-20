@@ -19,6 +19,8 @@ class CreateTimestampsTable extends Migration
             $table->dateTime('checkout')->nullable()->default(null);
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->dateTime('checkin_update')->nullable()->default(null);
+            $table->dateTime('checkout_update')->nullable()->default(null);
         });
     }
     /**

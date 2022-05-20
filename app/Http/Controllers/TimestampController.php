@@ -16,6 +16,10 @@ class TimestampController extends Base
      *
      * @return \Illuminate\Http\Response
      */
+    public function pageEditTime()
+    {
+        return view('DailyAttendance.edit', ['title' => 'edit']);
+    }
     public function index()
     {
         return view('timestamp.index', ['title' => 'タイムスタンプ']);
@@ -40,6 +44,7 @@ class TimestampController extends Base
         }
         else return response(['message' => 'invalid id'], 404);
     }
+    
     public function getListTimestamp(){
         // return response()->json(Timestamp::all());
         $data = DB::table('timestamps')
@@ -76,6 +81,25 @@ class TimestampController extends Base
         //
     }
 
+    public function createEditTime(Request $request)
+    {
+        $validated = $request->validate([
+            'timestamp_id' => 'required',
+        ]);
+        if (!$request['checkin'] && !$request['checkout']) {
+            return response(['message' => 'error'], 420);
+        } else {
+            DB::table('timestamps')
+                ->where("id", '=',  $request['timestamp_id'])
+                ->update(
+                    [
+                        'checkin_update' => $request['checkin'],
+                        'checkout_update' => $request['checkout'],
+                    ]
+                );
+            return Timestamp::select("*")->where('id', $request['timestamp_id'])->first();
+            }
+    }
     /**
      * Display the specified resource.
      *
@@ -110,7 +134,7 @@ class TimestampController extends Base
     {
         $ldate = Carbon::now();
         $timestamp = Timestamp::select("*")->where('user_id', $id)->whereDate('checkin',$ldate)->first();
-        if ($timestamp === null ) {
+        if ($timestamp === null || $timestamp['checkout']) {
             // if ($timestamp === null || $timestamp['checkout']  ) {
             return response()->json([
                 'message' => 'Not found',

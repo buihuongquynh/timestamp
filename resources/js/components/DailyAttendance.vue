@@ -12,6 +12,7 @@
           <div class="col-2">
             <b>checkin</b>
           </div>
+          
           <div class="col-2">
             <b>checkout</b>
           </div>
@@ -48,17 +49,11 @@ export default {
     user_id: String,
   },
   methods: {
-    forceRerender() {
-      	return ++this.componentKey;
-      },
     onChange(value) {
-        console.log(this.selected);
         this.TimeOfUser(this.selected);
-        this.forceRerender();
-        console.log(this.itemsTables,"itemsTables")
     },
     async Time() {
-      // try {
+      try {
       const data = await ListReponsitory.getTimeWorks();
       for (const variable in data.data) {
         this.options.push({
@@ -69,9 +64,9 @@ export default {
 
       this.selected= this.options[0].value
       this.TimeOfUser(this.options[0].value);
-      // } catch (error) {
-      //   console.log('errrro');
-      // }
+      } catch (error) {
+        console.log('errrro');
+      }
     },
     async TimeOfUser(selected) {
       try {
@@ -86,6 +81,8 @@ export default {
             time: element.checkin.slice(8, 10),
             checkin: element.checkin.slice(10, 19),
             checkout: element.checkout.slice(10, 19),
+            checkin_update: element?.checkin_update?.slice(10, 19),
+            checkout_update:  element?.checkout_update?.slice(10, 19),
           });
         });
       } catch (error) {
