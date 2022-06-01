@@ -17,5 +17,19 @@ export default{
     createTimeEdit(payload){
         return Repository.post("/create-edit-time",payload)
     },
-
+    createTimeOfDayNoCheckIn(payload){
+        return Repository.post("/createTimeOfDayNoCheckIn",payload)
+    },
+    on_leave(payload){
+        return Repository.post("/on-leave",payload)
+    },
+    detailSlow(id){
+        return Repository.get(`/on-leave/${id}`)
+    },
+    listTimeSlow(payload){
+        return Repository.get(`/slow-of-user/${payload}`)
+    },
+    deleteSlowItem(id){
+        return Repository.delete(`/on-leave/${id}`)
+    }
 }

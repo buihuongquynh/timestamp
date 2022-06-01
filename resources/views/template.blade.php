@@ -35,7 +35,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <ul style="align-items: center;" class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="/timestamp">
               <div class="align-center">
@@ -59,6 +59,10 @@
               </div>
               <div>日次勤怠</div> 
             </a>
+            
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/on-leave"> <div class="mr-3">Xin nghỉ phép</div></a>      
             </li>
           </ul>
           <a href="/00abloginuser/logout"><button type="button" class="btn btn-outline-secondary">Logout</button></a>

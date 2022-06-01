@@ -13,5 +13,7 @@ class Timestamp extends Model
         'checkin',
         'checkout',
         'user_id',
+        'checkin_update',
+        'checkout_update'
     ];
 }

@@ -1,9 +1,9 @@
 <template>
   <div>
     <li class="row">
-      <div class="col-1 tow_icon">
+      <div class="col-lg-1 col-md-2 tow_icon">
         <div class="tow_icon">
-          <a :href="'/edit/' + itemsTable.id">
+          <a :href="'edit/' + selected + '-' + itemsTable.time + '/' + itemsTable.id">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -20,12 +20,12 @@
         </div>
         <span>{{ itemsTable.time }} </span>
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-5">
        <p> {{ itemsTable.checkin }}</p>
        <p  class="red">  {{ itemsTable.checkin_update }}</p>
       
       </div>
-      <div class="col-2">
+      <div class="col-lg-2 col-md-5">
         <p>{{ itemsTable.checkout }}</p>
         <p class="red">{{ itemsTable.checkout_update }}</p>
       </div>
@@ -37,6 +37,7 @@ export default {
   props: {
     itemsTable: Object,
     index: Number,
+    selected: String,
   },
 };
 </script>

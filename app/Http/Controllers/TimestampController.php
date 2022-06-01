@@ -66,7 +66,7 @@ class TimestampController extends Base
         // return response()->json(Timestamp::all());
         $user = DB::table('timestamps')
         ->where('user_id', $request['user_id'])
-            ->where('checkin', 'like', '%'.$request['checkin'].'%')
+            ->where('checkin', 'like', '%'.$request['checkin'].'%')->orWhere('checkin_update', 'like', '%'.$request['checkin'].'%')
         ->get();
         return $user;
     }
@@ -99,6 +99,19 @@ class TimestampController extends Base
                 );
             return Timestamp::select("*")->where('id', $request['timestamp_id'])->first();
             }
+    }
+    public function createTimeOfDayNoCheckIn(Request $request)
+    {
+        // dd($request);
+          $data = new Timestamp([
+            'checkin' => null,
+            'checkout' => null,
+            'user_id' => $request['user_id'],
+            'checkin_update' => $request['checkin'],
+            'checkout_update' => $request['checkout'],
+          ]);
+          $data->save();
+          return response()->json($data);
     }
     /**
      * Display the specified resource.

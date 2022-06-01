@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use App\Models\Timestamp;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Base;
 
@@ -59,11 +60,47 @@ class Guard extends Base
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function signUp(Request $request)
     {
-        //
-    }
+        // Validate the inputs
+        $request->validate([
+            'name' => 'required',
+        ]);
+        // ensure the request has a file before we attempt anything else.
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png,jpg' // Only allow .jpg, .bmp and .png file types.
+            ]);
 
+            // Save the file locally in the storage/public/ folder under a new folder named /product
+            $request->file->store('users', 'public');
+
+            // Store the record, using the new file hashname which will be it's new filename identity.
+            $user = new User([
+                "name" => $request->get('name'),
+                "email" => $request->get('email'),
+                "prefecture" => $request->get('prefecture'),
+                "address" => $request->get('address'),
+                "birthday" => $request->get('birthday'),
+                "avatar" => $request->file->hashName()
+            ]);
+            $user->save(); // Finally, save the record.
+        
+
+        return ("succers!");
+    }
+    public function upload(Request $request)
+    {
+        $images = $request->file('image');
+		$imageName='';
+		foreach($images as $image)
+		{
+			$new_name = rand() . '.' . $image->getClientOriginalExtension();
+			$image->move(public_path('/uploads/images'), $new_name);
+			$imageName =$imageName . $new_name.",";
+		}
+		$imagedb=$imageName;
+        return response()->json($imagedb);
+    }
     /**
      * Display the specified resource.
      *
