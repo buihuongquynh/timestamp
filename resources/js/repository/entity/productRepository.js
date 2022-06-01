@@ -23,6 +23,9 @@ export default{
     on_leave(payload){
         return Repository.post("/on-leave",payload)
     },
+    edit_slow(id, payload){
+        return Repository.put(`/on-leave/${id}`,payload)
+    },
     detailSlow(id){
         return Repository.get(`/on-leave/${id}`)
     },

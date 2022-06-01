@@ -20,6 +20,7 @@ class CreateOnLeaveTable extends Migration
             $table->dateTime('end_day_off')->nullable();
             $table->string('reason')->nullable();
             $table->boolean('is_slow')->default(false);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

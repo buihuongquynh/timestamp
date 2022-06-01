@@ -2,13 +2,13 @@
   <div>
     <b-table striped hover :items="items">
       <template #cell(delete)="data" >
-        <span @click="toggleModal(data.value)" class="trash">
+        <span @click="data.value.stt ? toggleModal(data.value.id) : null" class="trash">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-trash3"
+           v-bind:class="getClass(data.value.stt)"
             viewBox="0 0 16 16"
           >
             <path
@@ -38,7 +38,7 @@
       </template>
       <template #cell(edit)="data">
         <span
-          @click="toggleModalEdit(data.value)"
+          @click="data.value.stt ? toggleModal(data.value.id) : null"
           class="trash"
         >
           <svg
@@ -46,18 +46,23 @@
             width="16"
             height="16"
             fill="currentColor"
-            class="bi bi-pencil"
+           v-bind:class="getClass(data.value.stt)"
             viewBox="0 0 16 16"
           >
             <path
               d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
             />
           </svg>
-           <b-modal ref="modal-edit" hide-footer title="Detele item">
+           <b-modal ref="modal-edit" hide-footer title="Edit
+            item">
                {{row}}
             <edit-slow :toggleModalEdit="toggleModalEdit" :id="idSelect"/>
           </b-modal>
         </span>
+      </template>
+      <template #cell(status)="data">
+        <div v-if="data.value"><b class="approve">approve</b></div>
+        <div v-else><b class="pendding">pendding</b></div>
       </template>
     </b-table>
   </div>
@@ -67,8 +72,6 @@
 import { RepositoryFactory } from "../repository/factory";
 const ListReponsitory = RepositoryFactory.get("list");
 import { BASE_URL_WEB } from "../constants";
-// import EditSlow from "EditSlow.vue"
-// import EditSlow from './EditSlow.vue';
 export default {
   data() {
     return {
@@ -83,11 +86,13 @@ export default {
     this.listTimeSlow();
   },
   components: {
-    // EditSlow
-    
-    // EditSlow
   },
   methods: {
+     getClass(stt){
+        return {
+            'bi bi-pencil': stt,  
+            'bi bi-pencil disable': !stt}
+    },
     async listTimeSlow() {
       this.items = [];
       const data = await ListReponsitory.listTimeSlow(this.user_id);
@@ -97,8 +102,9 @@ export default {
           end_time: element?.end_day_off,
           reason: element?.reason,
           _rowVariant: element?.is_slow ? "white" : "danger",
-          delete: element?.id,
-          edit: element?.id,
+          status: element?.status,
+          delete: {id: element?.id, stt: element.status},
+          edit:  {id: element?.id, stt: element.status},
         });
       });
     },
@@ -136,5 +142,14 @@ export default {
 }
 .trash svg {
   color: blue;
+}
+.approve{
+  color: darkgreen;
+}
+.pendding{
+  color: red;
+}
+.disable{
+  opacity: .5;
 }
 </style>

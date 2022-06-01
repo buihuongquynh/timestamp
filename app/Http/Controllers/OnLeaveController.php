@@ -96,7 +96,12 @@ class OnLeaveController extends Base
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = On_leave::findOrFail($id);
+        $data->start_day_off = $request->get('start_day_off');
+        $data->end_day_off = $request->get('end_day_off');
+        $data->reason = $request->get('reason');
+        $data->save();
+        return response()->json($data);
     }
 
     /**
