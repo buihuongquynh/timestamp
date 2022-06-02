@@ -34,5 +34,11 @@ export default{
     },
     deleteSlowItem(id){
         return Repository.delete(`/on-leave/${id}`)
+    },
+    getAllLeave(payload){
+        return Repository.get(`get-all-leave?page=${payload}`)
+    },
+    changeStatus(payload){
+        return Repository.post(`/change-status/${payload}`)
     }
 }

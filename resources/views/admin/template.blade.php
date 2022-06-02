@@ -84,7 +84,7 @@
     if (localStorage.getItem('remember.lte.pushmenu') == 'sidebar-collapse') document.body.classList.add('sidebar-collapse');
     const storageUrl = '<?php echo trim(Storage::url('.'), '.'); ?>';
   </script>
-  <div class="wrapper r-<?php // echo implode(' r-', Auth::group('Simplegroup')->get_roles());
+  <div id="adminApp" class="wrapper r-<?php // echo implode(' r-', Auth::group('Simplegroup')->get_roles());
                         ?>">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -198,6 +198,14 @@
                 <i class="nav-icon fas fa-headset"></i>
                 <p>
                   レビュー管理
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="/admin/leave/list" class="nav-link">
+                <i class="nav-icon fas fa-headset"></i>
+                <p>
+                Leave
                 </p>
               </a>
             </li>
@@ -330,7 +338,7 @@
     </div>
   </div>
   <?php endif; ?>
-
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

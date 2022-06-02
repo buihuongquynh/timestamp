@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Standard\Moderator;
 use App\Http\Controllers\Admin\Requirement\Type;
 use App\Http\Controllers\Admin\Requirement\Review;
 use App\Http\Controllers\Admin\Requirement\Setups;
+use App\Http\Controllers\Admin\Leave\Leave;
 use App\Http\Controllers\Guard;
 use App\Http\Controllers\Admin\GuardAdmin;
 
@@ -77,5 +78,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('requirement/review/copy/{id}', [Review::class, 'postCopy']);
 
     Route::get('requirement/setups/detail', [Setups::class, 'getDetail']);
-  Route::post('requirement/setups/detail', [Setups::class, 'postDetail']);
+    Route::post('requirement/setups/detail', [Setups::class, 'postDetail']);
+    Route::get('leave/list', [Leave::class, 'getPageList']);
 });

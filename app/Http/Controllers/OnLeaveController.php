@@ -16,6 +16,17 @@ class OnLeaveController extends Base
     {
         return view('on_leave.on_leave', ['title' => 'on_leave']);
     }
+    public function getAll()
+    {
+        $data = On_leave::join('users', 'on_leave.user_id', '=', 'users.id')
+            ->select('on_leave.*', 'users.name as username')
+            ->paginate(13);
+        return response()->json($data);
+
+        // $data = On_leave::paginate(13);
+        // return response()->json($data);
+    }
+
     public function getPageList()
     {
         return view('on_leave.list', ['title' => 'on_leave_list']);
@@ -103,7 +114,13 @@ class OnLeaveController extends Base
         $data->save();
         return response()->json($data);
     }
-
+    public function changeStatus($id)
+    {
+        $data = On_leave::findOrFail($id);
+        $data->status = !$data->status;
+        $data->save();
+        return response()->json($data);
+    }
     /**
      * Remove the specified resource from storage.
      *

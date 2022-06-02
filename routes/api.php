@@ -23,6 +23,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::resource('on-leave', OnLeaveController::class);
 Route::get('slow-of-user/{id}', [OnLeaveController::class, 'listTimeSlow']);
+Route::get('get-all-leave', [OnLeaveController::class, 'getAll']);
+Route::post('change-status/{id}', [OnLeaveController::class, 'changeStatus']);
 Route::post('timestamp', [TimestampController::class, 'create']);
 Route::get('timestamp', [TimestampController::class, 'getListTimestamp']);
 Route::get('timestamp/{id}', [TimestampController::class, 'show']);

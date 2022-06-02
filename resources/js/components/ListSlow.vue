@@ -2,7 +2,7 @@
   <div>
     <b-table striped hover :items="items">
       <template #cell(delete)="data" >
-        <span @click="data.value.stt ? toggleModal(data.value.id) : null" class="trash">
+        <span @click="!data.value.stt ? toggleModal(data.value.id) : null" class="trash">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="16"
@@ -38,7 +38,7 @@
       </template>
       <template #cell(edit)="data">
         <span
-          @click="data.value.stt ? toggleModal(data.value.id) : null"
+          @click="!data.value.stt ? toggleModal(data.value.id) : null"
           class="trash"
         >
           <svg
@@ -90,8 +90,8 @@ export default {
   methods: {
      getClass(stt){
         return {
-            'bi bi-pencil': stt,  
-            'bi bi-pencil disable': !stt}
+            'bi bi-pencil': !stt,  
+            'bi bi-pencil disable': stt}
     },
     async listTimeSlow() {
       this.items = [];
