@@ -29,8 +29,8 @@ export default{
     detailSlow(id){
         return Repository.get(`/on-leave/${id}`)
     },
-    listTimeSlow(payload){
-        return Repository.get(`/slow-of-user/${payload}`)
+    listTimeSlow(id,page){
+        return Repository.get(`/slow-of-user/${id}?page=${page}`)
     },
     deleteSlowItem(id){
         return Repository.delete(`/on-leave/${id}`)

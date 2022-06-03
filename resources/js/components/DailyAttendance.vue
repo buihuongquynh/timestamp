@@ -1,34 +1,79 @@
-<template>
-  <div class="mt-10 list_time">
-    <div class="select">
+  <template>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="select">
       <b-form-select
         @change="onChange()"
         v-model="selected"
         :options="options"
       ></b-form-select>
     </div>
-    <div class="tables">
-      <ul class="head">
-        <li class="row">
-          <div class="col-lg-1 col-md-2">
-            <b>Ngày</b>
-          </div>
-          <div class="col-lg-2 col-md-5">
-            <b>checkin</b>
-          </div>
+      <div class="row">
 
-          <div class="col-lg-2 col-md-5">
-            <b>checkout</b>
+        <div class="col-12">
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Time List</h3>
+            </div>
+
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Start Time Update</th>
+                    <th>End Time Update</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="product in itemsTables" :key="product.time">
+                    <td>{{ product.time }}</td>
+                    <td>{{ product.checkin }}</td>
+                    <td>{{ product.checkout }}</td>
+                    <td><div class="update">{{ product.checkin_update }}</div></td>
+                    <td><div class="update">{{ product.checkout_update }}</div></td>
+                                <td>
+                      <a :href="'edit/' + selected + '-' + product.time + '/' + product.id">
+                        <i class="fa fa-edit blue"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+              <pagination :data="products" @pagination-change-page="getResults"></pagination>
+            </div>
           </div>
-        </li>
-      </ul>
-      <ul v-for="(itemsTable, index) in itemsTables" :key="itemsTable.id">
-        <ItemTime :selected="selected" :itemsTable="itemsTable" :index="index" />
-      </ul>
+          <!-- /.card -->
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNew" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" v-show="!editmode">Create New Product</h5>
+              <h5 class="modal-title" v-show="editmode">Edit Product</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
-<script>
+
+ <script>
 import { RepositoryFactory } from "../repository/factory";
 const ListReponsitory = RepositoryFactory.get("list");
 import ItemTime from "./ItemTime.vue";
@@ -54,7 +99,6 @@ export default {
   },
   methods: {
     pushMonth(month, res) {
-      console.log(res, "ressss");
       var countDay;
       if (
         month == 1 ||
@@ -73,11 +117,9 @@ export default {
       }
       const arrMonth = [];
       const arrMonthRes = [];
-      // const daySelect = element?.checkin? element?.checkin.slice(8, 10) : element?.checkin-.slice(8, 10)
       res.forEach(element => {
         element?.checkin? arrMonthRes?.push(parseInt(element?.checkin?.slice(8, 10))) :  arrMonthRes?.push(parseInt(element?.checkin_update?.slice(8, 10)))
       });
-      console.log(this.selected,"res")
       for (let index = 1; index <= countDay; index++) {
         for (  let item = 0; item < res.length; item++) {
           console.log(res[item].checkin?.slice(8, 10),"res[item].checkin?.slice(8, 10)")
@@ -105,7 +147,6 @@ export default {
               checkout_update: "",
             });
             //  break;
-            console.log(arrMonth,"array")
           }
          
         }
@@ -145,36 +186,38 @@ export default {
 };
 </script>
 <style scoped>
-.head {
-  background: #95a5a6;
-  color: white;
-  margin-bottom: 0;
-}
-.list_time ul {
-  border: 0.5px solid #bcc1c5;
-  margin-left: 10px;
-}
-.list_time ul li div {
-  border-right: .5px solid #bcc1c5;
-  border-bottom: .5px solid #bcc1c5;
-  padding: 5px;
-}
-.list_time .head li div {
-  border-bottom: none;
-}
-.list_time .tables {
-  margin-top: 30px;
-}
-.list_time {
-  margin-top: 30px;
-}
-ul {
-  margin-bottom: 0;
-}
-svg {
+/* CSS */
+.button-33 {
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgba(44, 187, 99, .15) 0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgba(44, 187, 99, .15) 0 8px 16px, rgba(44, 187, 99, .15) 0 16px 32px;
+  color: green;
   cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 3px 10px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
-.select {
-  margin-left: 10px;
+
+.button-33:hover {
+  box-shadow: rgba(44, 187, 99, .35) 0 -25px 18px -14px inset, rgba(44, 187, 99, .25) 0 1px 2px, rgba(44, 187, 99, .25) 0 2px 4px, rgba(44, 187, 99, .25) 0 4px 8px, rgba(44, 187, 99, .25) 0 8px 16px, rgba(44, 187, 99, .25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
+}
+.button-34{
+  color: red;
+  background-color: rgb(245, 189, 189);
+}
+.button-34:hover{
+
+}
+.update{
+  color: red;
 }
 </style>

@@ -84,7 +84,7 @@ class OnLeaveController extends Base
     }
     public function listTimeSlow($id)
     {
-        $data = On_leave::select("*")->where('user_id', $id)->get();
+        $data = On_leave::select("*")->where('user_id', $id)->paginate(13);
         return response()->json($data);
     }
     /**

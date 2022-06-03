@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container">
     <div class="icon-list mb-3">
       <span>
  <a href="list-slow" >
@@ -251,7 +251,7 @@ export default {
 <style>
 
 .icon-list svg{
-  color: blue;
+  color: #0d6efd;
   width: 30px;
   height: 30px;
   cursor: pointer;

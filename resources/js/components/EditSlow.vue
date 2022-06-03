@@ -135,6 +135,7 @@ export default {
   props: {
     toggleModalEdit: Function,
     id: Number,
+    listTimeSlow:Function,
   },
   created() {
     this.getDetail();
@@ -209,6 +210,7 @@ export default {
           }
         }
         this.toggleModalEdit()
+        this.listTimeSlow()
       } catch (error) {}
     },
   },

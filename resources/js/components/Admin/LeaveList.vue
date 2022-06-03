@@ -163,35 +163,18 @@ export default {
   methods: {
 
     async getResults(page = 1) {
-      // this.$Progress.start();
       const data = await ListReponsitory.getAllLeave(page);
       this.products = data
       this.cusPage = page;
-      // axios.get('api/get-all-leave?page=' + page).then(({ data }) => (this.products = data.data));
-
-      // this.$Progress.finish();
     },
     async loadProducts() {
       const data = await ListReponsitory.getAllLeave();
       this.products = data
-      // if(this.$gate.isAdmin()){
-      // axios.get("api/get-all-leave").then(({ data }) => (this.products = data.data));
-      // }
     },
     async ChangeStatus(id){
       await ListReponsitory.changeStatus(id);
       this.getResults(this.cusPage)
     },
-    // loadCategories(){
-    //     axios.get("/api/category/list").then(({ data }) => (this.categories = data.data));
-    // },
-    // loadTags(){
-    //     axios.get("/api/tag/list").then(response => {
-    //         this.autocompleteItems = response.data.data.map(a => {
-    //             return { text: a.name, id: a.id };
-    //         });
-    //     }).catch(() => console.warn('Oh. Something went wrong'));
-    // },
     editModal(product) {
       this.editmode = true;
       this.form.reset();
@@ -204,8 +187,6 @@ export default {
       $('#addNew').modal('show');
     },
     createProduct() {
-      // this.$Progress.start();
-
       this.form.post('api/product')
         .then((data) => {
           if (data.data.success) {
@@ -236,18 +217,14 @@ export default {
         })
     },
     updateProduct() {
-      // this.$Progress.start();
       this.form.put('api/product/' + this.form.id)
         .then((response) => {
-          // success
           $('#addNew').modal('hide');
           Toast.fire({
             icon: 'success',
             title: response.data.message
           });
           this.$Progress.finish();
-          //  Fire.$emit('AfterCreate');
-
           this.loadProducts();
         })
         .catch(() => {
@@ -264,7 +241,6 @@ export default {
         cancelButtonColor: '#3085d6',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
-
         // Send request to the server
         if (result.value) {
           this.form.delete('api/product/' + id).then(() => {
