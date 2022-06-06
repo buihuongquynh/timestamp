@@ -4,7 +4,7 @@
       <b-card-text>
         <div class="col-lg-6">
           <div>
-            <label for="example-input">Choose a date</label>
+            <label for="example-input">Day off</label>
             <b-input-group class="mb-3">
               <b-form-input
                 id="example-input"
@@ -28,11 +28,11 @@
         </div>
         <div class="row">
           <div class="col-lg-6">
-            <div>start</div>
+            <div>Start time</div>
             <vue-timepicker v-model="time_start"></vue-timepicker>
           </div>
           <div class="col-lg-6">
-            <div>end</div>
+            <div>End time</div>
             <vue-timepicker v-model="time_end"></vue-timepicker>
           </div>
         </div>
@@ -54,7 +54,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <div>
-                  <label for="example-input">Choose a date</label>
+                  <label for="example-input">Start day off</label>
                   <b-input-group class="mb-3">
                     <b-form-input
                       id="example-input"
@@ -78,7 +78,7 @@
               </div>
               <div class="col-lg-6">
                 <div>
-                  <label for="example-input">Choose a date</label>
+                  <label for="example-input">End day off</label>
                   <b-input-group class="mb-3">
                     <b-form-input
                       id="example-input"
@@ -118,7 +118,7 @@
 </template>
 <script>
 import { RepositoryFactory } from "../repository/factory";
-const ListReponsitory = RepositoryFactory.get("list");
+const ListReponsitory = RepositoryFactory.get("api");
 import { BASE_URL_WEB } from "../constants";
 export default {
   data() {

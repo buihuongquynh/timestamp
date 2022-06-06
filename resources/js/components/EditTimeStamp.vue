@@ -1,8 +1,17 @@
 <template>
   <div class="container center">
-    <div>
-      <vue-timepicker class="m-1 ip-btd" v-model="checkin"></vue-timepicker>
-      <vue-timepicker class="m-1 ip-btd" v-model="checkout"></vue-timepicker>
+    <div class="d-flex">
+      <div class="row">
+        <div>
+          <vue-timepicker class="m-1 ip-btd" v-model="checkin"></vue-timepicker>
+        </div>
+        <div>
+          <vue-timepicker
+            class="m-1 ip-btd"
+            v-model="checkout"
+          ></vue-timepicker>
+        </div>
+      </div>
       <button class="m-1 button-62" v-on:click="this.createNewTimeEdit">
         Submit
       </button>
@@ -31,13 +40,11 @@
         </div>
       </div>
     </div>
-   
   </div>
 </template>
 <script>
-
 import { RepositoryFactory } from "../repository/factory";
-const ListReponsitory = RepositoryFactory.get("list");
+const ListReponsitory = RepositoryFactory.get("api");
 import { BASE_URL_WEB } from "../constants";
 export default {
   data() {
@@ -51,7 +58,7 @@ export default {
   created() {
     this.TimeId();
   },
-   props: {
+  props: {
     user_id: String,
   },
   methods: {

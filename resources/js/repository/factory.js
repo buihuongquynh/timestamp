@@ -1,6 +1,6 @@
 import ProductRepository from "./entity/productRepository";
 const repositories={
-    'list' : ProductRepository,
+    'api' : ProductRepository,
 }
 export const RepositoryFactory = {
     get: name=>repositories[name]

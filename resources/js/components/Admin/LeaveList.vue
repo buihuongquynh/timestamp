@@ -131,7 +131,7 @@
 
   <script>
 import { RepositoryFactory } from "../../repository/factory";
-const ListReponsitory = RepositoryFactory.get("list");
+const ListReponsitory = RepositoryFactory.get("api");
 import VueTagsInput from '@johmun/vue-tags-input';
 import LaravelVuePagination from 'laravel-vue-pagination';
 export default {
@@ -143,17 +143,6 @@ export default {
     return {
       editmode: false,
       products: {},
-      // form: new Form({
-      //     id : '',
-      //     category : '',
-      //     name: '',
-      //     description: '',
-      //     tags:  [],
-      //     photo: '',
-      //     category_id: '',
-      //     price: '',
-      //     photoUrl: '',
-      // }),
       categories: [],
       cusPage: null,
       tag: '',
@@ -241,7 +230,6 @@ export default {
         cancelButtonColor: '#3085d6',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
-        // Send request to the server
         if (result.value) {
           this.form.delete('api/product/' + id).then(() => {
             Swal.fire(
@@ -249,7 +237,6 @@ export default {
               'Your file has been deleted.',
               'success'
             );
-            // Fire.$emit('AfterCreate');
             this.loadProducts();
           }).catch((data) => {
             Swal.fire("Failed!", data.message, "warning");
@@ -263,26 +250,8 @@ export default {
 
   },
   created() {
-    // this.$Progress.start();
-
     this.loadProducts();
-    // this.loadCategories();
-    // this.loadTags();
-
-    // this.$Progress.finish();
   },
-  // filters: {
-  //     truncate: function (text, length, suffix) {
-  //         return text.substring(0, length) + suffix;
-  //     },
-  // },
-  // computed: {
-  //   filteredItems() {
-  //     return this.autocompleteItems.filter(i => {
-  //       return i.text.toLowerCase().indexOf(this.tag.toLowerCase()) !== -1;
-  //     });
-  //   },
-  // },
 }
 </script>
 <style>

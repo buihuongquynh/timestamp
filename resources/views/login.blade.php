@@ -1,6 +1,5 @@
 @extends('template')
 @section('content')
-
 <div class="container">
   <form method="post">
     @csrf

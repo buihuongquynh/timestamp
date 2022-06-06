@@ -2,34 +2,33 @@
   <div class="container">
     <div class="icon-list mb-3">
       <span>
- <a href="list-slow" >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-card-list"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
-        />
-        <path
-          d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"
-        />
-      </svg>
-    </a>
+        <a href="list-slow">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-card-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"
+            />
+            <path
+              d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"
+            />
+          </svg>
+        </a>
       </span>
-
     </div>
-   
+
     <b-card no-body>
       <b-tabs card>
-        <b-tab title="Xin đi muộn" active>
+        <b-tab title="Delay" active>
           <b-card-text>
             <div class="col-lg-3">
               <div>
-                <label for="example-input">Choose a date</label>
+                <label for="example-input">Day off</label>
                 <b-input-group class="mb-3">
                   <b-form-input
                     id="example-input"
@@ -53,11 +52,11 @@
             </div>
             <div class="row">
               <div class="col-lg-3">
-                <div>start</div>
+                <div>Start time</div>
                 <vue-timepicker v-model="time_start"></vue-timepicker>
               </div>
               <div class="col-lg-3">
-                <div>end</div>
+                <div>End time</div>
                 <vue-timepicker v-model="time_end"></vue-timepicker>
               </div>
             </div>
@@ -74,12 +73,12 @@
             </button>
           </b-card-text>
         </b-tab>
-        <b-tab title="xin nghỉ">
+        <b-tab title="On leave">
           <b-card-text>
             <div class="row">
               <div class="col-lg-3">
                 <div>
-                  <label for="example-input">Choose a date</label>
+                  <label for="example-input">Start day off</label>
                   <b-input-group class="mb-3">
                     <b-form-input
                       id="example-input"
@@ -103,7 +102,7 @@
               </div>
               <div class="col-lg-3">
                 <div>
-                  <label for="example-input">Choose a date</label>
+                  <label for="example-input">End day off</label>
                   <b-input-group class="mb-3">
                     <b-form-input
                       id="example-input"
@@ -170,7 +169,7 @@
  
 <script>
 import { RepositoryFactory } from "../repository/factory";
-const ListReponsitory = RepositoryFactory.get("list");
+const ListReponsitory = RepositoryFactory.get("api");
 import { BASE_URL_WEB } from "../constants";
 export default {
   data() {
@@ -243,21 +242,21 @@ export default {
             new bootstrap.Toast(document.querySelector("#basicToast")).show();
           }
         }
+        window.location = BASE_URL_WEB + "/list-slow";
       } catch (error) {}
     },
   },
 };
 </script>
 <style>
-
-.icon-list svg{
+.icon-list svg {
   color: #0d6efd;
   width: 30px;
   height: 30px;
   cursor: pointer;
 }
-.icon-list{
-  display:flex;
-  justify-content: flex-end;  
+.icon-list {
+  display: flex;
+  margin-top:.5rem ;
 }
 </style>

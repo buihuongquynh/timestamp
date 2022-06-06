@@ -102,5 +102,11 @@ jQuery(document).ready(function(){
        });
 });
 </script>
-
+<style>
+  @media (max-width: 786px) {
+    .clock{
+      font-size: 40px;
+    }
+  }
+</style>
 @endsection

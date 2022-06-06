@@ -1,14 +1,14 @@
   <template>
   <section class="content">
     <div class="container-fluid">
-      <div class="select">
+      <div class="select pb-3">
       <b-form-select
         @change="onChange()"
         v-model="selected"
         :options="options"
       ></b-form-select>
     </div>
-      <div class="row">
+      <div class="row mt-3">
 
         <div class="col-12">
 
@@ -25,8 +25,8 @@
                     <th>Day</th>
                     <th>Start Time</th>
                     <th>End Time</th>
-                    <th>Start Time Update</th>
-                    <th>End Time Update</th>
+                    <th>Start Update</th>
+                    <th>End Update</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -75,7 +75,7 @@
 
  <script>
 import { RepositoryFactory } from "../repository/factory";
-const ListReponsitory = RepositoryFactory.get("list");
+const ListReponsitory = RepositoryFactory.get("api");
 import ItemTime from "./ItemTime.vue";
 export default {
   data() {

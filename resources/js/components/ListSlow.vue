@@ -105,7 +105,7 @@
 
   <script>
 import { RepositoryFactory } from "../repository/factory";
-const ListReponsitory = RepositoryFactory.get("list");
+const ListReponsitory = RepositoryFactory.get("api");
 import VueTagsInput from "@johmun/vue-tags-input";
 import LaravelVuePagination from "laravel-vue-pagination";
 export default {
