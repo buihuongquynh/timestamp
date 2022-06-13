@@ -45,75 +45,87 @@
           max-rows="6"
         ></b-form-textarea>
         <button class="mt-3 button-62" v-on:click="SubmitForm(true)">
-              Submit
-            </button>
+          Submit
+        </button>
       </b-card-text>
     </div>
     <div v-else>
-          <b-card-text>
-            <div class="row">
-              <div class="col-lg-6">
-                <div>
-                  <label for="example-input">Start day off</label>
-                  <b-input-group class="mb-3">
-                    <b-form-input
-                      id="example-input"
-                      v-model="start_day_off"
-                      type="text"
-                      placeholder="YYYY-MM-DD"
-                      autocomplete="off"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-form-datepicker
-                        v-model="start_day_off"
-                        button-only
-                        right
-                        locale="en-US"
-                        aria-controls="example-input"
-                        @context="onContext"
-                      ></b-form-datepicker>
-                    </b-input-group-append>
-                  </b-input-group>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div>
-                  <label for="example-input">End day off</label>
-                  <b-input-group class="mb-3">
-                    <b-form-input
-                      id="example-input"
-                      v-model="end_day_off"
-                      type="text"
-                      placeholder="YYYY-MM-DD"
-                      autocomplete="off"
-                    ></b-form-input>
-                    <b-input-group-append>
-                      <b-form-datepicker
-                        v-model="end_day_off"
-                        button-only
-                        right
-                        locale="en-US"
-                        aria-controls="example-input"
-                        @context="onContext"
-                      ></b-form-datepicker>
-                    </b-input-group-append>
-                  </b-input-group>
-                </div>
-              </div>
+      <b-card-text>
+        <div class="row">
+          <div class="col-lg-6">
+            <div>
+              <label for="example-input">Start day off</label>
+              <b-input-group class="mb-3">
+                <b-form-input
+                  id="example-input"
+                  v-model="start_day_off"
+                  type="text"
+                  placeholder="YYYY-MM-DD"
+                  autocomplete="off"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-form-datepicker
+                    v-model="start_day_off"
+                    button-only
+                    right
+                    locale="en-US"
+                    aria-controls="example-input"
+                    @context="onContext"
+                  ></b-form-datepicker>
+                </b-input-group-append>
+              </b-input-group>
             </div>
-            <div>Reason</div>
-            <b-form-textarea
-              id="textarea"
-              v-model="text"
-              placeholder="Enter something..."
-              rows="3"
-              max-rows="6"
-            ></b-form-textarea>
-            <button class="mt-3 button-62" v-on:click="SubmitForm(false)">
-              Submit
-            </button>
-          </b-card-text>
+          </div>
+          <div class="col-lg-6">
+            <div>
+              <label for="example-input">End day off</label>
+              <b-input-group class="mb-3">
+                <b-form-input
+                  id="example-input"
+                  v-model="end_day_off"
+                  type="text"
+                  placeholder="YYYY-MM-DD"
+                  autocomplete="off"
+                ></b-form-input>
+                <b-input-group-append>
+                  <b-form-datepicker
+                    v-model="end_day_off"
+                    button-only
+                    right
+                    locale="en-US"
+                    aria-controls="example-input"
+                    @context="onContext"
+                  ></b-form-datepicker>
+                </b-input-group-append>
+              </b-input-group>
+            </div>
+          </div>
+        </div>
+        <div>Reason</div>
+        <b-form-textarea
+          id="textarea"
+          v-model="text"
+          placeholder="Enter something..."
+          rows="3"
+          max-rows="6"
+        ></b-form-textarea>
+        <button class="mt-3 button-62" v-on:click="SubmitForm(false)">
+          Submit
+        </button>
+      </b-card-text>
     </div>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+  <div id="basicToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-success text-light">
+      <h5 class="my-0">Success!</h5>
+    </div>
+  </div>
+  <div id="error" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header bg-danger text-light">
+      <h5 class="my-0">Error!</h5>
+    </div>
+  </div>
+</div>
   </div>
 </template>
 <script>
@@ -123,7 +135,7 @@ import { BASE_URL_WEB } from "../constants";
 export default {
   data() {
     return {
-       is_slow: null,
+      is_slow: null,
       date: "",
       time_start: "",
       time_end: "",
@@ -135,7 +147,7 @@ export default {
   props: {
     toggleModalEdit: Function,
     id: Number,
-    listTimeSlow:Function,
+    listTimeSlow: Function,
   },
   created() {
     this.getDetail();
@@ -158,17 +170,17 @@ export default {
     },
     async getDetail() {
       const data = await ListReponsitory.detailSlow(this.id);
-      const time_start = data.start_day_off?.split(" ")
-      const time_end = data.end_day_off?.split(" ")
+      const time_start = data.start_day_off?.split(" ");
+      const time_end = data.end_day_off?.split(" ");
       this.is_slow = data.is_slow;
-      this.date = time_start[0]
-      this.time_start= time_start[1]
-      this.time_end= time_end[1]
-      this.text= data.reason,
-      this.start_day_off =  time_start[0]
-      this.end_day_off= time_end[0]
+      this.date = time_start[0];
+      this.time_start = time_start[1];
+      this.time_end = time_end[1];
+      (this.text = data.reason), (this.start_day_off = time_start[0]);
+      this.end_day_off = time_end[0];
     },
     async SubmitForm(is_slow) {
+      console.log("asdasdfdgdfg");
       let d1 = new Date(this.start_day_off);
       let d2 = new Date(this.end_day_off);
       let d3 = new Date(this.date);
@@ -188,11 +200,15 @@ export default {
       const valiTime_end = this.time_end?.split(":");
       try {
         if (!is_slow) {
-          this.start_day_off !== "" || this.end_day_off !== ""
-            ? this.compare_date(d1, d2, d4)
-              ? await ListReponsitory.edit_slow(this.id,body)
-              : new bootstrap.Toast(document.querySelector("#error")).show()
-            : new bootstrap.Toast(document.querySelector("#error")).show();
+          if (this.start_day_off !== "" || this.end_day_off !== "") {
+            if (this.compare_date(d1, d2, d4)) {
+              await ListReponsitory.edit_slow(this.id, body);
+              this.toggleModalEdit();
+              this.listTimeSlow();
+            } else {
+              new bootstrap.Toast(document.querySelector("#error")).show();
+            }
+          } else new bootstrap.Toast(document.querySelector("#error")).show();
         } else {
           if (
             d3.valueOf() < d4.getTime() ||
@@ -202,15 +218,20 @@ export default {
           ) {
             new bootstrap.Toast(document.querySelector("#error")).show();
           } else {
-            parseInt(valiTime_start[0] * 60 + valiTime_start[1]) >
-            parseInt(valiTime_end[0] * 60 + valiTime_end[1])
-              ? new bootstrap.Toast(document.querySelector("#error")).show()
-              : await ListReponsitory.edit_slow(this.id,body);
+            if (
+              parseInt(valiTime_start[0] * 60 + valiTime_start[1]) >
+              parseInt(valiTime_end[0] * 60 + valiTime_end[1])
+            ) {
+              new bootstrap.Toast(document.querySelector("#error")).show();
+            } else {
+              await ListReponsitory.edit_slow(this.id, body);
+               this.toggleModalEdit();
+                this.listTimeSlow();
+            }
+
             new bootstrap.Toast(document.querySelector("#basicToast")).show();
           }
         }
-        this.toggleModalEdit()
-        this.listTimeSlow()
       } catch (error) {}
     },
   },
