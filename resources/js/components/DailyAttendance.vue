@@ -9,14 +9,11 @@
       ></b-form-select>
     </div>
       <div class="row mt-3">
-
         <div class="col-12">
-
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Time List</h3>
             </div>
-
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
               <table class="table table-hover">
@@ -83,7 +80,6 @@ export default {
       selected: null,
       options: [],
       itemsTables: [],
-
       show: false,
       componentKey: 1,
     };
@@ -99,6 +95,7 @@ export default {
   },
   methods: {
     pushMonth(month, res) {
+      this.itemsTables = [];
       var countDay;
       if (
         month == 1 ||
@@ -122,7 +119,6 @@ export default {
       });
       for (let index = 1; index <= countDay; index++) {
         for (  let item = 0; item < res.length; item++) {
-          console.log(res[item].checkin?.slice(8, 10),"res[item].checkin?.slice(8, 10)")
           if (parseInt(res[item].checkin?.slice(8, 10)) === index || parseInt(res[item].checkin_update?.slice(8, 10)) === index ) {
             res[item].checkin ? arrMonth.push(parseInt(res[item].checkin?.slice(8, 10))) : arrMonth.push(parseInt(res[item].checkin_update?.slice(8, 10)))
             this.itemsTables?.push({
@@ -134,9 +130,6 @@ export default {
               checkout_update: res[item]?.checkout_update?.slice(10, 19),
             });
           } else if(!arrMonth.includes(index) && !arrMonthRes.includes(index)) {
-           console.log(arrMonth,"arrmonth")
-                      console.log(arrMonthRes,"arrMonthRes")
-
             arrMonth.push(parseInt(index));
             this.itemsTables?.push({
               time: index < 10? '0' + index : index,
@@ -146,16 +139,13 @@ export default {
               checkin_update: "",
               checkout_update: "",
             });
-            //  break;
+             break;
           }
          
         }
       }
-      console.log(this.itemsTables,"items")
     },
-    onChange(value) {
-      this.TimeOfUser(this.selected);
-    },
+
     async Time() {
       try {
         const data = await ListReponsitory.getTimeWorks();
@@ -172,15 +162,19 @@ export default {
       }
     },
     async TimeOfUser(selected) {
-      // try {
+      console.log(selected,"selected")
+      try {
         const res = await ListReponsitory.getTimeUserWorks({
           user_id: this.user_id,
           checkin: selected,
         });
         this.pushMonth(this.selected.slice(5, 7), res);
-      // } catch (error) {
-      //   console.log("erroroo");
-      // }
+      } catch (error) {
+        console.log("erroroo");
+      }
+    },
+     onChange(value) {
+      this.TimeOfUser(this.selected);
     },
   },
 };
@@ -213,9 +207,6 @@ export default {
 .button-34{
   color: red;
   background-color: rgb(245, 189, 189);
-}
-.button-34:hover{
-
 }
 .update{
   color: red;

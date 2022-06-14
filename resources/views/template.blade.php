@@ -123,6 +123,7 @@
                 <p>
                   <a href="#!" class="text-dark">Your Account</a>
                 </p>
+                
                 <p>
                   <a href="#!" class="text-dark">Become an Affiliate</a>
                 </p>
@@ -133,8 +134,6 @@
                   <a href="#!" class="text-dark">Help</a>
                 </p>
               </div>
-              <!-- Grid column -->
-
               <!-- Grid column -->
               <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <!-- Links -->
