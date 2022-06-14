@@ -32,7 +32,7 @@ Route::group(['middleware' => 'validate_token'], function() {
     Route::get('/on-leave/edit/{id}', [OnLeaveController::class, 'getPageEdit']);
     Route::get('/works', [DailyAttendance::class, 'index']);
     Route::get('/edit/{day}/{id}', [TimestampController::class, 'pageEditTime']);
-Route::get('/timestamp', [TimestampController::class, 'index']);
+Route::get('/', [TimestampController::class, 'index']);
 
 });
   
