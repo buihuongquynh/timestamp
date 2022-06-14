@@ -14,7 +14,7 @@ import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
  Vue.component('on-leave', require('./components/OnLeave').default);
  Vue.component('list-slow', require('./components/ListSlow').default);
  Vue.component('edit-slow', require('./components/EditSlow').default);
- Vue.component('admin-leave-list', require('./components/Admin/LeaveList').default);
+ Vue.component('admin-leave-list', require('./components/Admin/LeaveList.vue').default);
  Vue.component('pagination', require('laravel-vue-pagination'));
  Vue.component('vue-timepicker', VueTimepicker);
  Vue.use(VCalendar);

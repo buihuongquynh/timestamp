@@ -338,7 +338,7 @@
     </div>
   </div>
   <?php endif; ?>
-  <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('assets/dist/js/app.js') }}"></script>
 </body>
 
 </html>
