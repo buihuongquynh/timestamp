@@ -20,7 +20,7 @@ class Guard extends Base
     {
         $auth = Auth::guard('web');
         if ($auth->check()) {
-            return redirect('timestamp');
+            return redirect('/');
         }
         return view('login', ['title' => 'login']);
     }

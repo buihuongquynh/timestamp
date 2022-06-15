@@ -35,7 +35,6 @@ Route::group(['middleware' => 'validate_token'], function() {
 Route::get('/', [TimestampController::class, 'index']);
 
 });
-  
     Route::get('/login', [Guard::class, 'index']);
     Route::post('/login', [Guard::class, 'Login']);
     Route::get('/00abloginuser/logout',[Guard::class, 'getLogout']);
