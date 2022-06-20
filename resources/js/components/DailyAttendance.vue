@@ -162,7 +162,6 @@ export default {
       }
     },
     async TimeOfUser(selected) {
-      console.log(selected,"selected")
       try {
         const res = await ListReponsitory.getTimeUserWorks({
           user_id: this.user_id,

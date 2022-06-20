@@ -64,7 +64,6 @@ export default {
   methods: {
     async TimeId() {
       const array = window.location.href?.split("/");
-      console.log(array[array.length - 2]);
       if (array[array.length - 1] !== "0") {
         try {
           const data = await ListReponsitory.getTimeId(array[array.length - 1]);

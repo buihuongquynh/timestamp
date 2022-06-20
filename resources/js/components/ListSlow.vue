@@ -143,7 +143,6 @@ export default {
     },
     handleEdit(id) {
       this.idSelect = id;
-      console.log("asdafsf");
     },
     toggleModal(id) {
       this.$refs["my-modal"].toggle("#toggle-btn");

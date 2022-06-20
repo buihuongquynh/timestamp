@@ -279,7 +279,6 @@ export default {
         skype: this.skype,
       };
       const res = await ListReponsitory.editProfile(this.user_id, data);
-      console.log(res,"ress")
     },
     selectImage() {
       this.currentImage = this.$refs.file.files.item(0);

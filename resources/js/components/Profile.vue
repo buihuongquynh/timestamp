@@ -174,7 +174,6 @@ export default {
   methods: {
     async getDetail() {
       const data = await ListReponsitory.getProfile(this.user_id);
-      console.log(data, "data");
       this.data = data;
     },
   },

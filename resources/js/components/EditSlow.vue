@@ -183,7 +183,6 @@ export default {
       this.end_day_off = time_end[0];
     },
     async SubmitForm(is_slow) {
-      console.log("asdasdfdgdfg");
       let d1 = new Date(this.start_day_off);
       let d2 = new Date(this.end_day_off);
       let d3 = new Date(this.date);
