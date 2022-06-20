@@ -40,5 +40,8 @@ export default{
     },
     changeStatus(payload){
         return Repository.post(`/change-status/${payload}`)
-    }
+    },
+    getProfile(id){
+        return Repository.get(`/profile/${id}`)
+    },
 }

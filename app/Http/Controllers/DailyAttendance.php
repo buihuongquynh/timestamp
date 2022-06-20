@@ -11,7 +11,6 @@ class DailyAttendance extends Base
     //
     public function index()
     {
-    
         return view('DailyAttendance.index', ['title' => 'Daily attendance']);
     }
 }

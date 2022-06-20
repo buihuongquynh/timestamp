@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AuController extends Controller
 {
-    public function getIndex()
+  public function getIndex()
   {
     return view('login', ['title' => 'login']);
   }

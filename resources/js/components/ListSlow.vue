@@ -22,7 +22,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="product in products.data" :key="product.id">
+                  <tr :class="[product.is_slow ? 'slow_row' : '', '']" v-for="product in products.data" :key="product.id">
                     <td>{{ product.id }}</td>
                     <td>{{ product.start_day_off }}</td>
                     <td>{{ product.end_day_off }}</td>
@@ -172,6 +172,9 @@ export default {
 </script>
 <style>
 /* CSS */
+.slow_row{
+  background: #f4f5ca;
+}
 .button-33 {
   background-color: #c2fbd7;
   border-radius: 100px;

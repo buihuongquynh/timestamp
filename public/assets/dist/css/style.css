@@ -3670,6 +3670,7 @@ align-items: center;
 .nav-link{
   font-weight: 500;
 }
+
 @media (max-width: 768px) {
   select{
     font-size: 12px;
@@ -3735,4 +3736,7 @@ align-items: center;
 .col-lg-3{
   padding-left: 0;
   padding-right: 0;
+}
+button{
+  min-width:unset !important;
 }

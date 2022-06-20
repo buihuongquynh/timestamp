@@ -24,6 +24,10 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('prefecture');
             $table->string('address', 1024);
             $table->date('birthday')->nullable();
+            $table->string('github')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->string('zalo')->nullable();
+            $table->string('skype')->nullable();
             $table->string('avatar')->nullable();
         });
     }

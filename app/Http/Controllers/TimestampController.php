@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
@@ -37,37 +38,38 @@ class TimestampController extends Base
     public function create(Request $request)
     {
         $ldate = Carbon::now();
-        $timestamp = Timestamp::select("*")->where('user_id', $request['user_id'])->whereDate('checkin',$ldate)->get();
-        if(count($timestamp) < 1){
+        $timestamp = Timestamp::select("*")->where('user_id', $request['user_id'])->whereDate('checkin', $ldate)->get();
+        if (count($timestamp) < 1) {
             Timestamp::create($request->all());
             return response(['message' => 'success'], 200);
-        }
-        else return response(['message' => 'invalid id'], 404);
+        } else return response(['message' => 'invalid id'], 404);
     }
-    
-    public function getListTimestamp(){
+
+    public function getListTimestamp()
+    {
         // return response()->json(Timestamp::all());
         $data = DB::table('timestamps')
             ->select('checkin')
             ->get();
-            $res = [];
-            foreach ($data as $value)
-                {
-                    array_push($res,    
-                      date("Y-m",strtotime($value->checkin))   
-                );
-                }
-                
-                return response()->json([
-                    'data' => array_unique($res),
-                ], 200);
+        $res = [];
+        foreach ($data as $value) {
+            array_push(
+                $res,
+                date("Y-m", strtotime($value->checkin))
+            );
+        }
+
+        return response()->json([
+            'data' => array_unique($res),
+        ], 200);
     }
-    public function getTimeOfUser(Request $request){
+    public function getTimeOfUser(Request $request)
+    {
         // return response()->json(Timestamp::all());
         $user = DB::table('timestamps')
-        ->where('user_id', $request['user_id'])
-            ->where('checkin', 'like', '%'.$request['checkin'].'%')->orWhere('checkin_update', 'like', '%'.$request['checkin'].'%')
-        ->get();
+            ->where('user_id', $request['user_id'])
+            ->where('checkin', 'like', '%' . $request['checkin'] . '%')->orWhere('checkin_update', 'like', '%' . $request['checkin'] . '%')
+            ->get();
         return $user;
     }
     /**
@@ -98,20 +100,20 @@ class TimestampController extends Base
                     ]
                 );
             return Timestamp::select("*")->where('id', $request['timestamp_id'])->first();
-            }
+        }
     }
     public function createTimeOfDayNoCheckIn(Request $request)
     {
         // dd($request);
-          $data = new Timestamp([
+        $data = new Timestamp([
             'checkin' => null,
             'checkout' => null,
             'user_id' => $request['user_id'],
             'checkin_update' => $request['checkin'],
             'checkout_update' => $request['checkout'],
-          ]);
-          $data->save();
-          return response()->json($data);
+        ]);
+        $data->save();
+        return response()->json($data);
     }
     /**
      * Display the specified resource.
@@ -146,14 +148,14 @@ class TimestampController extends Base
     public function update($id)
     {
         $ldate = Carbon::now();
-        $timestamp = Timestamp::select("*")->where('user_id', $id)->whereDate('checkin',$ldate)->first();
+        $timestamp = Timestamp::select("*")->where('user_id', $id)->whereDate('checkin', $ldate)->first();
         if ($timestamp === null || $timestamp['checkout']) {
             // if ($timestamp === null || $timestamp['checkout']  ) {
             return response()->json([
                 'message' => 'Not found',
             ], 404);
         }
-        Timestamp::select("*")->where('user_id', $id)->whereDate('checkin',$ldate)->first()->update(['checkout' => DB::raw('CURRENT_TIMESTAMP')]);
+        Timestamp::select("*")->where('user_id', $id)->whereDate('checkin', $ldate)->first()->update(['checkout' => DB::raw('CURRENT_TIMESTAMP')]);
         return response()->json([
             $timestamp
         ]);

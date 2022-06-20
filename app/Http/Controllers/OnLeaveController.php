@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\On_leave;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Base;
@@ -53,22 +54,22 @@ class OnLeaveController extends Base
      */
     public function store(Request $request)
     {
-       
+
         $request->validate([
             'user_id' => 'required'
-          ]);
-          
-          $data = new On_leave([
+        ]);
+
+        $data = new On_leave([
             'user_id' => $request->get('user_id'),
             'is_slow' => $request->get('is_slow'),
             'start_day_off' => $request->get('start_day_off'),
             'end_day_off' => $request->get('end_day_off'),
             'reason' => $request->get('reason'),
-          ]);
-      
-          $data->save();
-      
-          return response()->json($data);
+        ]);
+
+        $data->save();
+
+        return response()->json($data);
     }
 
     /**

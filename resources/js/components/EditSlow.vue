@@ -2,7 +2,8 @@
   <div>
     <div v-if="is_slow" class="d-block">
       <b-card-text>
-        <div class="col-lg-6">
+        <div class="row">
+<div class="col-lg-6">
           <div>
             <label for="example-input">Day off</label>
             <b-input-group class="mb-3">
@@ -26,6 +27,8 @@
             </b-input-group>
           </div>
         </div>
+        </div>
+        
         <div class="row">
           <div class="col-lg-6">
             <div>Start time</div>
