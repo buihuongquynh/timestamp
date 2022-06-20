@@ -21,7 +21,7 @@ class UserController extends Base
     {
         return view('profile.edit', ['title' => 'edit profile']);
     }
-    public function uploadAvatar(Request $request){
+    public function uploadAvatar(Request $request, $id){
         // $images = $request->file('image');
 		// $imageName='';
 		// foreach($images as $image)
@@ -37,7 +37,7 @@ class UserController extends Base
             $new_name = rand() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('/uploads/images'), $new_name);
             DB::table('users')
-                ->where("id", '=',  $request['user_id'])
+                ->where("id", '=',  $id)
                 ->update(
                     [
                         'avatar' => $new_name,
@@ -101,7 +101,15 @@ class UserController extends Base
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = User::findOrFail($id);
+        $data->name = $request->get('name');
+        $data->email = $request->get('email');
+        $data->address = $request->get('address');
+        $data->birthday = $request->get('birthday');
+        $data->zalo = $request->get('zalo');
+        $data->skype = $request->get('skype');
+        $data->save();
+        return response()->json($data);
     }
 
     /**

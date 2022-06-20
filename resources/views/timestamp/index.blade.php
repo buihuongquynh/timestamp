@@ -30,7 +30,7 @@
   </div>
 </div>
 <script>
-  const BASE_URL = "http://l.timestamp"
+  const BASE_URL = "http://l.product"
 
   function showTime() {
     var date = new Date();

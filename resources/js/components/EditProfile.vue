@@ -31,46 +31,52 @@
                   d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z"
                 />
               </svg>
-             <div class="row">
-      <div class="col-8">
-        <label class="btn btn-default p-0">
-          <input
-            type="file"
-            accept="image/*"
-            ref="file"
-            @change="selectImage"
-          />
-        </label>
-      </div>
+              <div class="row">
+                <div class="col-8">
+                  <label class="btn btn-default p-0">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      ref="file"
+                      @change="selectImage"
+                    />
+                  </label>
+                </div>
 
-      <div class="col-4">
-        <button
-          class="btn btn-success btn-sm float-right"
-          :disabled="!currentImage"
-          @click="upload"
-        >
-          Upload
-        </button>
-      </div>
-    </div>
-     <div v-if="currentImage" class="progress">
-      <div
-        class="progress-bar progress-bar-info"
-        role="progressbar"
-        :aria-valuenow="progress"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        :style="{ width: progress + '%' }"
-      >
-        {{ progress }}%
-      </div>
-    </div>
+                <div class="col-4">
+                  <button
+                    class="btn btn-success btn-sm float-right"
+                    :disabled="!currentImage"
+                    @click="upload"
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+              <div v-if="currentImage" class="progress">
+                <div
+                  class="progress-bar progress-bar-info"
+                  role="progressbar"
+                  :aria-valuenow="progress"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  :style="{ width: progress + '%' }"
+                >
+                  {{ progress }}%
+                </div>
+              </div>
 
-    <div v-if="previewImage">
-      <div>
-        <img class="preview my-3" :src="previewImage" alt="" />
-      </div>
-    </div>
+              <div v-if="previewImage">
+                <div>
+                  <img
+                    width="200px"
+                    height="200px"
+                    class="preview my-3"
+                    :src="previewImage"
+                    alt=""
+                  />
+                </div>
+              </div>
               <h5 class="my-3"></h5>
               <p class="text-muted mb-1">Full Stack Developer</p>
               <p class="text-muted mb-4">{{ data.address }}</p>
@@ -242,7 +248,7 @@ export default {
       github: "",
       zalo: "",
       skype: "",
-       currentImage: undefined,
+      currentImage: undefined,
       previewImage: undefined,
       progress: 0,
       message: "",
@@ -272,10 +278,10 @@ export default {
         zalo: this.zalo,
         skype: this.skype,
       };
-      
-      console.log(data, "data");
+      const res = await ListReponsitory.editProfile(this.user_id, data);
+      console.log(res,"ress")
     },
-      selectImage() {
+    selectImage() {
       this.currentImage = this.$refs.file.files.item(0);
       this.previewImage = URL.createObjectURL(this.currentImage);
       this.progress = 0;
@@ -283,11 +289,16 @@ export default {
     },
     upload() {
       this.progress = 0;
-      UploadService.upload(this.currentImage, (event) => {
-        this.progress = Math.round((100 * event.loaded) / event.total);
-      })
+      UploadService.upload(
+        this.currentImage,
+        (event) => {
+          this.progress = Math.round((100 * event.loaded) / event.total);
+        },
+        this.user_id
+      )
         .then((response) => {
           this.message = response.data.message;
+          this.getDetail(), (this.previewImage = undefined);
         })
         .then((images) => {
           this.imageInfos = images.data;
@@ -296,6 +307,7 @@ export default {
           this.progress = 0;
           this.message = "Could not upload the image! " + err;
           this.currentImage = undefined;
+          this.getDetail();
         });
     },
   },

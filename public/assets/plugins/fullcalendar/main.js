@@ -4024,7 +4024,7 @@ var FullCalendar = (function (exports) {
             if (this.timeZone === 'UTC' || !this.namedTimeZoneImpl) {
                 return new Date(ms);
             }
-            return arrayToUtcDate(this.namedTimeZoneImpl.timestampToArray(ms));
+            return arrayToUtcDate(this.namedTimeZoneImpl.productToArray(ms));
         };
         DateEnv.prototype.offsetForMarker = function (m) {
             if (this.timeZone === 'local') {

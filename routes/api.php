@@ -28,7 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //
 Route::resource('/profile', UserController::class);
-Route::post("uploadAvt",[UserController::class,'uploadAvatar']);
+Route::post("uploadAvt/{id}",[UserController::class,'uploadAvatar']);
 Route::resource('on-leave', OnLeaveController::class);
 Route::get('slow-of-user/{id}', [OnLeaveController::class, 'listTimeSlow']);
 Route::get('get-all-leave', [OnLeaveController::class, 'getAll']);

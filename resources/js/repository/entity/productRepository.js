@@ -44,4 +44,7 @@ export default{
     getProfile(id){
         return Repository.get(`/profile/${id}`)
     },
+    editProfile(id, payload){
+        return Repository.put(`/profile/${id}`, payload)
+    },
 }
