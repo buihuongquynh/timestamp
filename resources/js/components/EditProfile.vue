@@ -227,7 +227,9 @@
           </div>
         </div>
       </div>
-      <a href="" @click="handleSubmit" class="button-62">Submit</a>
+      <div class="btn-submit">
+        <a href="" @click="handleSubmit" class="button-62">Submit</a>
+      </div>
     </div>
   </section>
 </template>
@@ -324,5 +326,11 @@ export default {
 }
 .edit-camera {
   cursor: pointer;
+}
+.btn-submit{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
 }
 </style>

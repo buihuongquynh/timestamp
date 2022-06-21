@@ -258,5 +258,6 @@ export default {
 .icon-list {
   display: flex;
   margin-top:.5rem ;
+  margin-left: 35px;
 }
 </style>

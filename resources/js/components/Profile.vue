@@ -31,8 +31,9 @@
                     p-3
                   "
                 >
-                  <i class="fab fa-github fa-lg" style="color: #333333"></i>
-                  <p class="mb-0">{{ data.github }}</p>
+                  <!-- <i class="fab fa-github fa-lg" style="color: #333333"></i> -->
+                  <!-- <p class="mb-0">{{ data.github }}</p> -->
+                  <a :href="data.github">Github</a>
                 </li>
                 <li
                   class="
@@ -43,8 +44,9 @@
                     p-3
                   "
                 >
-                  <i class="fab fa-facebook fa-lg" style="color: #55acee"></i>
-                  <p class="mb-0">{{ data.zalo }}</p>
+                  <!-- <i class="fab fa-facebook fa-lg" style="color: #55acee"></i>
+                  <p class="mb-0">{{ data.zalo }}</p> -->
+                  <a :href="data.zalo">Zalo</a>
                 </li>
                 <li
                   class="
@@ -55,8 +57,9 @@
                     p-3
                   "
                 >
-                  <i class="fab fa-skype fa-lg" style="color: #ac2bac"></i>
-                  <p class="mb-0">{{ data.skype }}</p>
+                  <!-- <i class="fab fa-skype fa-lg" style="color: #ac2bac"></i> -->
+                  <a :href="data.skype">Skype</a>
+                  <!-- <p class="mb-0">{{ data.skype }}</p> -->
                 </li>
               </ul>
             </div>

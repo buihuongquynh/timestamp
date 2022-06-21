@@ -42,7 +42,7 @@ class Guard extends Base
       if ($request->query('ref')) {
         return "123";
       } else {
-        return redirect('timestamp');
+        return redirect('/');
       }
     } else {
       return redirect('login');
